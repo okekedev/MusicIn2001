@@ -807,7 +807,7 @@ final class iPodState {
 
         case .howToUse:
             return [
-                MenuItem(title: "1. Get MyMusic on a Mac"),
+                MenuItem(title: "1. Get Music in 2001 on a Mac"),
                 MenuItem(title: "2. Add songs via MP3 or link"),
                 MenuItem(title: "3. Open this app"),
                 MenuItem(title: "4. Click Sync")
@@ -815,17 +815,17 @@ final class iPodState {
 
         case .support:
             return [
-                MenuItem(title: tipManager.displayPrice(for: "com.christianokeke.MyMusiciOS.tip1")) { [weak self] in
-                    self?.purchaseTip(productID: "com.christianokeke.MyMusiciOS.tip1")
+                MenuItem(title: tipManager.displayPrice(for: "com.christianokeke.MyMusic.tip1")) { [weak self] in
+                    self?.purchaseTip(productID: "com.christianokeke.MyMusic.tip1")
                 },
-                MenuItem(title: tipManager.displayPrice(for: "com.christianokeke.MyMusiciOS.tip5")) { [weak self] in
-                    self?.purchaseTip(productID: "com.christianokeke.MyMusiciOS.tip5")
+                MenuItem(title: tipManager.displayPrice(for: "com.christianokeke.MyMusic.tip5")) { [weak self] in
+                    self?.purchaseTip(productID: "com.christianokeke.MyMusic.tip5")
                 },
-                MenuItem(title: tipManager.displayPrice(for: "com.christianokeke.MyMusiciOS.tip20")) { [weak self] in
-                    self?.purchaseTip(productID: "com.christianokeke.MyMusiciOS.tip20")
+                MenuItem(title: tipManager.displayPrice(for: "com.christianokeke.MyMusic.tip20")) { [weak self] in
+                    self?.purchaseTip(productID: "com.christianokeke.MyMusic.tip20")
                 },
-                MenuItem(title: tipManager.displayPrice(for: "com.christianokeke.MyMusiciOS.tip100")) { [weak self] in
-                    self?.purchaseTip(productID: "com.christianokeke.MyMusiciOS.tip100")
+                MenuItem(title: tipManager.displayPrice(for: "com.christianokeke.MyMusic.tip100")) { [weak self] in
+                    self?.purchaseTip(productID: "com.christianokeke.MyMusic.tip100")
                 }
             ]
 

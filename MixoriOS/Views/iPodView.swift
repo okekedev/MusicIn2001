@@ -62,12 +62,12 @@ struct OnboardingOverlay: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 20) {
-                Text("Welcome to MyMusic")
+                Text("Welcome to Music in 2001")
                     .font(.title2.bold())
                     .foregroundColor(.white)
 
                 VStack(alignment: .leading, spacing: 12) {
-                    Text("1. Get MyMusic on a Mac")
+                    Text("1. Get Music in 2001 on a Mac")
                     Text("2. Add songs via MP3 or link")
                     Text("3. Open this app")
                     Text("4. Click Sync")
@@ -162,7 +162,7 @@ struct StatusBarView: View {
 
     var screenTitle: String {
         switch state.currentScreen {
-        case .mainMenu: return "MyMusic"
+        case .mainMenu: return "Music in 2001"
         case .music: return "Music"
         case .playlists: return "Playlists"
         case .onTheGo: return "On-The-Go"
