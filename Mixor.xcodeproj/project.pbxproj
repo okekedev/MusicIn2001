@@ -504,7 +504,7 @@
 				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mixor/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = MyMusic;
+				INFOPLIST_KEY_CFBundleDisplayName = "Music 2001";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright 2024. All rights reserved.";
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -548,7 +548,7 @@
 				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mixor/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = MyMusic;
+				INFOPLIST_KEY_CFBundleDisplayName = "Music 2001";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright 2024. All rights reserved.";
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -582,7 +582,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MixoriOS/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = MyMusic;
+				INFOPLIST_KEY_CFBundleDisplayName = "Music 2001";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -624,7 +624,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MixoriOS/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = MyMusic;
+				INFOPLIST_KEY_CFBundleDisplayName = "Music 2001";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
