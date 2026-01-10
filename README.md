@@ -18,7 +18,8 @@ A music player that brings back the simplicity of 2001 - when you owned your mus
 ## Features
 
 ### Mac App
-- Import MP3s or download from links
+- **Download songs from any link** - paste a URL and add it to your library
+- Import MP3 files directly
 - Organize your library by artist, album, and genre
 - Create playlists
 - Sync to iCloud for your iOS device
@@ -41,6 +42,27 @@ A music player that brings back the simplicity of 2001 - when you owned your mus
 - macOS 13.0+
 - iOS 17.0+
 - iCloud account (for syncing between devices)
+
+## Build from Source
+
+```bash
+# Clone the repository
+git clone https://github.com/okekedev/MusicIn2001.git
+cd MusicIn2001
+
+# Open in Xcode
+open Mixor.xcodeproj
+
+# Build and run (Cmd + R)
+```
+
+### Prerequisites
+
+For the download feature to work, install these via Homebrew:
+
+```bash
+brew install yt-dlp ffmpeg
+```
 
 ## Links
 
