@@ -4,6 +4,14 @@ Your music. Your library.
 
 A music player that brings back the simplicity of 2001 - when you owned your music, synced it from your computer, and listened on your terms.
 
+## Screenshots
+
+<p align="center">
+  <img src="ScreenshotsIOS/screenshot1.png" width="200" />
+  <img src="ScreenshotsIOS/screenshot2.png" width="200" />
+  <img src="ScreenshotsIOS/screenshot3.png" width="200" />
+</p>
+
 ## Features
 
 ### Mac App
