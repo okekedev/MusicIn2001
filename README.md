@@ -1,4 +1,4 @@
-# MyMusic - 2001
+# Music in 2001
 
 Your music. Your library.
 
@@ -7,9 +7,12 @@ A music player that brings back the simplicity of 2001 - when you owned your mus
 ## Screenshots
 
 <p align="center">
-  <img src="ScreenshotsIOS/screenshot2.png" width="200" />
-  <img src="ScreenshotsIOS/screenshot3.png" width="200" />
-  <img src="ScreenshotsIOS/screenshot1.png" width="200" />
+  <img src="ScreenshotsIOS/black.png" width="130" />
+  <img src="ScreenshotsIOS/white.png" width="130" />
+  <img src="ScreenshotsIOS/red.png" width="130" />
+  <img src="ScreenshotsIOS/blue.png" width="130" />
+  <img src="ScreenshotsIOS/green.png" width="130" />
+  <img src="ScreenshotsIOS/pink.png" width="130" />
 </p>
 
 ## Features
@@ -18,7 +21,6 @@ A music player that brings back the simplicity of 2001 - when you owned your mus
 - Import MP3s or download from links
 - Organize your library by artist, album, and genre
 - Create playlists
-- DJ-style mixer with dual decks, crossfader, and 5-band EQ
 - Sync to iCloud for your iOS device
 
 ### iOS App
@@ -29,9 +31,9 @@ A music player that brings back the simplicity of 2001 - when you owned your mus
 
 ## How It Works
 
-1. Download MyMusic on your Mac
+1. Download Music in 2001 on your Mac
 2. Add songs (MP3 files or paste a link)
-3. Open MyMusic on your iPhone
+3. Open Music in 2001 on your iPhone
 4. Tap Sync - your library appears
 
 ## Requirements
