@@ -1,0 +1,690 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10000010000000000000001 /* MixorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000001 /* MixorApp.swift */; };
+		A10000010000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000002 /* ContentView.swift */; };
+		A10000010000000000000003 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000003 /* AppState.swift */; };
+		A10000010000000000000010 /* AudioTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000010 /* AudioTrack.swift */; };
+		A10000010000000000000011 /* ProcessingJob.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000011 /* ProcessingJob.swift */; };
+		A10000010000000000000012 /* VideoProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000012 /* VideoProject.swift */; };
+		A10000010000000000000013 /* PythonBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000013 /* PythonBridge.swift */; };
+		A10000010000000000000014 /* FFmpegService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000014 /* FFmpegService.swift */; };
+		A10000010000000000000015 /* GoogleAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000015 /* GoogleAuthService.swift */; };
+		A10000010000000000000016 /* YouTubeUploadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000016 /* YouTubeUploadService.swift */; };
+		A10000010000000000000017 /* FileManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000017 /* FileManagerService.swift */; };
+		A10000010000000000000018 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000018 /* KeychainService.swift */; };
+		A10000010000000000000019 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000019 /* Assets.xcassets */; };
+		A10000010000000000000020 /* Python in Resources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000020 /* Python */; };
+		A10000010000000000000021 /* MixorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000023 /* MixorTheme.swift */; };
+		A10000010000000000000026 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000026 /* PlayerView.swift */; };
+		A10000010000000000000027 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000027 /* PlayerViewModel.swift */; };
+		AA2AE1B32F0CAC73002630C7 /* ClickWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2AE1AB2F0CAC73002630C7 /* ClickWheelView.swift */; };
+		AA2AE1B42F0CAC73002630C7 /* iPodTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2AE1A92F0CAC73002630C7 /* iPodTypes.swift */; };
+		AA2AE1B52F0CAC73002630C7 /* iPodState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2AE1AF2F0CAC73002630C7 /* iPodState.swift */; };
+		AA2AE1B62F0CAC73002630C7 /* MixoriOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2AE1B12F0CAC73002630C7 /* MixoriOSApp.swift */; };
+		AA2AE1B72F0CAC73002630C7 /* iPodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2AE1AC2F0CAC73002630C7 /* iPodView.swift */; };
+		AA2AE1B82F0CAC73002630C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA2AE1AE2F0CAC73002630C7 /* Assets.xcassets */; };
+		AA2AE1C02F0CAC73002630C7 /* TipManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2AE1BF2F0CAC73002630C7 /* TipManager.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A10000020000000000000001 /* MixorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixorApp.swift; sourceTree = "<group>"; };
+		A10000020000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A10000020000000000000003 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		A10000020000000000000010 /* AudioTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTrack.swift; sourceTree = "<group>"; };
+		A10000020000000000000011 /* ProcessingJob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingJob.swift; sourceTree = "<group>"; };
+		A10000020000000000000012 /* VideoProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoProject.swift; sourceTree = "<group>"; };
+		A10000020000000000000013 /* PythonBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PythonBridge.swift; sourceTree = "<group>"; };
+		A10000020000000000000014 /* FFmpegService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFmpegService.swift; sourceTree = "<group>"; };
+		A10000020000000000000015 /* GoogleAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuthService.swift; sourceTree = "<group>"; };
+		A10000020000000000000016 /* YouTubeUploadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeUploadService.swift; sourceTree = "<group>"; };
+		A10000020000000000000017 /* FileManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerService.swift; sourceTree = "<group>"; };
+		A10000020000000000000018 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		A10000020000000000000019 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A10000020000000000000020 /* Python */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Python; sourceTree = "<group>"; };
+		A10000020000000000000021 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A10000020000000000000022 /* Mixor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mixor.entitlements; sourceTree = "<group>"; };
+		A10000020000000000000023 /* MixorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixorTheme.swift; sourceTree = "<group>"; };
+		A10000020000000000000026 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		A10000020000000000000027 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
+		A10000030000000000000001 /* MixorApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MixorApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA2AE1722F0C2F0D002630C7 /* MixorIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MixorIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA2AE1A92F0CAC73002630C7 /* iPodTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPodTypes.swift; sourceTree = "<group>"; };
+		AA2AE1AB2F0CAC73002630C7 /* ClickWheelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickWheelView.swift; sourceTree = "<group>"; };
+		AA2AE1AC2F0CAC73002630C7 /* iPodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPodView.swift; sourceTree = "<group>"; };
+		AA2AE1AE2F0CAC73002630C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AA2AE1AF2F0CAC73002630C7 /* iPodState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPodState.swift; sourceTree = "<group>"; };
+		AA2AE1B02F0CAC73002630C7 /* MixoriOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MixoriOS.entitlements; sourceTree = "<group>"; };
+		AA2AE1B12F0CAC73002630C7 /* MixoriOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixoriOSApp.swift; sourceTree = "<group>"; };
+		AA2AE1BF2F0CAC73002630C7 /* TipManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipManager.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A10000040000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA2AE16F2F0C2F0D002630C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A10000050000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				AA2AE1B22F0CAC73002630C7 /* MixoriOS */,
+				A10000050000000000000002 /* Mixor */,
+				A10000020000000000000020 /* Python */,
+				A10000050000000000000003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A10000050000000000000002 /* Mixor */ = {
+			isa = PBXGroup;
+			children = (
+				A10000050000000000000004 /* App */,
+				A10000050000000000000005 /* Views */,
+				A10000050000000000000006 /* ViewModels */,
+				A10000050000000000000007 /* Models */,
+				A10000050000000000000008 /* Services */,
+				A10000050000000000000009 /* Resources */,
+				A10000020000000000000021 /* Info.plist */,
+				A10000020000000000000022 /* Mixor.entitlements */,
+			);
+			path = Mixor;
+			sourceTree = "<group>";
+		};
+		A10000050000000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A10000030000000000000001 /* MixorApp.app */,
+				AA2AE1722F0C2F0D002630C7 /* MixorIOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A10000050000000000000004 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				A10000020000000000000001 /* MixorApp.swift */,
+				A10000020000000000000002 /* ContentView.swift */,
+				A10000020000000000000003 /* AppState.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		A10000050000000000000005 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A10000050000000000000015 /* Player */,
+				A10000050000000000000013 /* Shared */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A10000050000000000000006 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A10000020000000000000027 /* PlayerViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		A10000050000000000000007 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A10000020000000000000010 /* AudioTrack.swift */,
+				A10000020000000000000011 /* ProcessingJob.swift */,
+				A10000020000000000000012 /* VideoProject.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A10000050000000000000008 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A10000020000000000000013 /* PythonBridge.swift */,
+				A10000020000000000000014 /* FFmpegService.swift */,
+				A10000020000000000000015 /* GoogleAuthService.swift */,
+				A10000020000000000000016 /* YouTubeUploadService.swift */,
+				A10000020000000000000017 /* FileManagerService.swift */,
+				A10000020000000000000018 /* KeychainService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A10000050000000000000009 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A10000020000000000000019 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A10000050000000000000013 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				A10000020000000000000023 /* MixorTheme.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		A10000050000000000000015 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				A10000020000000000000026 /* PlayerView.swift */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		AA2AE1AA2F0CAC73002630C7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AA2AE1A92F0CAC73002630C7 /* iPodTypes.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AA2AE1AD2F0CAC73002630C7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AA2AE1AB2F0CAC73002630C7 /* ClickWheelView.swift */,
+				AA2AE1AC2F0CAC73002630C7 /* iPodView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AA2AE1B22F0CAC73002630C7 /* MixoriOS */ = {
+			isa = PBXGroup;
+			children = (
+				AA2AE1AA2F0CAC73002630C7 /* Models */,
+				AA2AE1AD2F0CAC73002630C7 /* Views */,
+				AA2AE1AE2F0CAC73002630C7 /* Assets.xcassets */,
+				AA2AE1AF2F0CAC73002630C7 /* iPodState.swift */,
+				AA2AE1BF2F0CAC73002630C7 /* TipManager.swift */,
+				AA2AE1B02F0CAC73002630C7 /* MixoriOS.entitlements */,
+				AA2AE1B12F0CAC73002630C7 /* MixoriOSApp.swift */,
+			);
+			path = MixoriOS;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A10000060000000000000001 /* MixorApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A10000080000000000000001 /* Build configuration list for PBXNativeTarget "MixorApp" */;
+			buildPhases = (
+				A10000070000000000000001 /* Sources */,
+				A10000040000000000000001 /* Frameworks */,
+				A10000070000000000000002 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MixorApp;
+			productName = MixorApp;
+			productReference = A10000030000000000000001 /* MixorApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AA2AE1712F0C2F0D002630C7 /* MixorIOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA2AE17C2F0C2F0F002630C7 /* Build configuration list for PBXNativeTarget "MixorIOS" */;
+			buildPhases = (
+				AA2AE16E2F0C2F0D002630C7 /* Sources */,
+				AA2AE16F2F0C2F0D002630C7 /* Frameworks */,
+				AA2AE1702F0C2F0D002630C7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MixorIOS;
+			packageProductDependencies = (
+			);
+			productName = MixorIOS;
+			productReference = AA2AE1722F0C2F0D002630C7 /* MixorIOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A10000090000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2620;
+				LastUpgradeCheck = 2620;
+				TargetAttributes = {
+					A10000060000000000000001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					AA2AE1712F0C2F0D002630C7 = {
+						CreatedOnToolsVersion = 26.2;
+					};
+				};
+			};
+			buildConfigurationList = A10000080000000000000002 /* Build configuration list for PBXProject "Mixor" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A10000050000000000000001;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = A10000050000000000000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A10000060000000000000001 /* MixorApp */,
+				AA2AE1712F0C2F0D002630C7 /* MixorIOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A10000070000000000000002 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000010000000000000019 /* Assets.xcassets in Resources */,
+				A10000010000000000000020 /* Python in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA2AE1702F0C2F0D002630C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA2AE1B82F0CAC73002630C7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A10000070000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000010000000000000001 /* MixorApp.swift in Sources */,
+				A10000010000000000000002 /* ContentView.swift in Sources */,
+				A10000010000000000000003 /* AppState.swift in Sources */,
+				A10000010000000000000026 /* PlayerView.swift in Sources */,
+				A10000010000000000000021 /* MixorTheme.swift in Sources */,
+				A10000010000000000000027 /* PlayerViewModel.swift in Sources */,
+				A10000010000000000000010 /* AudioTrack.swift in Sources */,
+				A10000010000000000000011 /* ProcessingJob.swift in Sources */,
+				A10000010000000000000012 /* VideoProject.swift in Sources */,
+				A10000010000000000000013 /* PythonBridge.swift in Sources */,
+				A10000010000000000000014 /* FFmpegService.swift in Sources */,
+				A10000010000000000000015 /* GoogleAuthService.swift in Sources */,
+				A10000010000000000000016 /* YouTubeUploadService.swift in Sources */,
+				A10000010000000000000017 /* FileManagerService.swift in Sources */,
+				A10000010000000000000018 /* KeychainService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA2AE16E2F0C2F0D002630C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA2AE1B32F0CAC73002630C7 /* ClickWheelView.swift in Sources */,
+				AA2AE1B42F0CAC73002630C7 /* iPodTypes.swift in Sources */,
+				AA2AE1B52F0CAC73002630C7 /* iPodState.swift in Sources */,
+				AA2AE1C02F0CAC73002630C7 /* TipManager.swift in Sources */,
+				AA2AE1B62F0CAC73002630C7 /* MixoriOSApp.swift in Sources */,
+				AA2AE1B72F0CAC73002630C7 /* iPodView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A100000A0000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = TUG3BHLSM4;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A100000A0000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = TUG3BHLSM4;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A100000A0000000000000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				AUTOMATION_APPLE_EVENTS = NO;
+				CODE_SIGN_ENTITLEMENTS = Mixor/Mixor.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = TUG3BHLSM4;
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Mixor/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MyMusic;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright 2024. All rights reserved.";
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.christianokeke.MyMusic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
+				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
+				RUNTIME_EXCEPTION_ALLOW_UNSIGNED_EXECUTABLE_MEMORY = NO;
+				RUNTIME_EXCEPTION_DEBUGGING_TOOL = NO;
+				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
+				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A100000A0000000000000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				AUTOMATION_APPLE_EVENTS = NO;
+				CODE_SIGN_ENTITLEMENTS = Mixor/Mixor.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = TUG3BHLSM4;
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Mixor/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MyMusic;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright 2024. All rights reserved.";
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.christianokeke.MyMusic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
+				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
+				RUNTIME_EXCEPTION_ALLOW_UNSIGNED_EXECUTABLE_MEMORY = NO;
+				RUNTIME_EXCEPTION_DEBUGGING_TOOL = NO;
+				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
+				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		AA2AE17A2F0C2F0F002630C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MixoriOS/MixoriOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MixoriOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MyMusic;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.christianokeke.MyMusic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		AA2AE17B2F0C2F0F002630C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MixoriOS/MixoriOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MixoriOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MyMusic;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.christianokeke.MyMusic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A10000080000000000000001 /* Build configuration list for PBXNativeTarget "MixorApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A100000A0000000000000003 /* Debug */,
+				A100000A0000000000000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A10000080000000000000002 /* Build configuration list for PBXProject "Mixor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A100000A0000000000000001 /* Debug */,
+				A100000A0000000000000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA2AE17C2F0C2F0F002630C7 /* Build configuration list for PBXNativeTarget "MixorIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA2AE17A2F0C2F0F002630C7 /* Debug */,
+				AA2AE17B2F0C2F0F002630C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A10000090000000000000001 /* Project object */;
+}
