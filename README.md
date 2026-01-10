@@ -7,9 +7,9 @@ A music player that brings back the simplicity of 2001 - when you owned your mus
 ## Screenshots
 
 <p align="center">
-  <img src="ScreenshotsIOS/black.png" width="130" />
-  <img src="ScreenshotsIOS/red.png" width="130" />
-  <img src="ScreenshotsIOS/white.png" width="130" />
+  <img src="ScreenshotsIOS/black.png" width="600" />
+  <img src="ScreenshotsIOS/red.png" width="600" />
+  <img src="ScreenshotsIOS/white.png" width="600" />
 </p>
 
 ## Features
