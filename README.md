@@ -8,8 +8,8 @@ A music player that brings back the simplicity of 2001 - when you owned your mus
 
 <p align="center">
   <img src="ScreenshotsIOS/black.png" width="130" />
-  <img src="ScreenshotsIOS/white.png" width="130" />
   <img src="ScreenshotsIOS/red.png" width="130" />
+  <img src="ScreenshotsIOS/white.png" width="130" />
   <img src="ScreenshotsIOS/blue.png" width="130" />
   <img src="ScreenshotsIOS/green.png" width="130" />
   <img src="ScreenshotsIOS/pink.png" width="130" />
