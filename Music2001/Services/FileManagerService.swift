@@ -12,9 +12,9 @@ class FileManagerService {
     /// The iCloud Drive folder URL (for syncing to other devices)
     private var iCloudURL: URL?
 
-    /// Local folder - always used for playback (offline-first)
+    /// Local folder - uses sandboxed Application Support for App Store compatibility
     private var localMusicURL: URL {
-        fm.urls(for: .musicDirectory, in: .userDomainMask)[0]
+        fm.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
             .appendingPathComponent("MyMusic")
     }
 

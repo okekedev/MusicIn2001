@@ -46,10 +46,10 @@ public class StorageManager: StorageManagerProtocol {
         if let iCloudURL = fileManager.url(forUbiquityContainerIdentifier: Self.iCloudContainerID) {
             _containerURL = iCloudURL.appendingPathComponent("Documents")
         } else {
-            // Fallback to local storage
+            // Fallback to local storage (sandboxed Application Support on macOS)
             #if os(macOS)
-            let musicURL = fileManager.urls(for: .musicDirectory, in: .userDomainMask).first!
-            _containerURL = musicURL.appendingPathComponent("MyMusic")
+            let appSupportURL = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
+            _containerURL = appSupportURL.appendingPathComponent("MyMusic")
             #else
             let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
             _containerURL = documentsURL.appendingPathComponent("MyMusic")
