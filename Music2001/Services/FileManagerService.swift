@@ -47,14 +47,19 @@ class FileManagerService {
 
     // MARK: - Directory Paths
 
-    /// Main music directory - always local for offline-first playback
+    /// Main music directory - uses iCloud when available, falls back to local
     var musicDirectory: URL {
-        localMusicURL
+        iCloudURL ?? localMusicURL
     }
 
     /// iCloud directory for syncing (may be nil)
     var iCloudDirectory: URL? {
         iCloudURL
+    }
+
+    /// Local-only directory (for fallback)
+    var localDirectory: URL {
+        localMusicURL
     }
 
     var fullTracksDirectory: URL {
@@ -227,10 +232,19 @@ class FileManagerService {
     }
 
     /// Copy a single file to iCloud (called after download or playlist update)
+    /// If already using iCloud as primary storage, this is a no-op
     func copyToiCloud(fileURL: URL) {
         guard iCloudAvailable, let iCloudBase = iCloudURL else { return }
 
-        let relativePath = String(fileURL.path.dropFirst(localMusicURL.path.count + 1))
+        // If file is already in iCloud container, no need to copy
+        if fileURL.path.hasPrefix(iCloudBase.path) {
+            return
+        }
+
+        // Calculate relative path from the music directory
+        let musicDir = musicDirectory
+        guard fileURL.path.hasPrefix(musicDir.path) else { return }
+        let relativePath = String(fileURL.path.dropFirst(musicDir.path.count + 1))
         let destURL = iCloudBase.appendingPathComponent(relativePath)
 
         DispatchQueue.global(qos: .background).async { [weak self] in
