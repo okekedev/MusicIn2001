@@ -207,12 +207,12 @@ final class iPodState {
     /// Sync from iCloud to local, then reload library
     func syncFromiCloudWithFeedback() {
         isSyncing = true
-        syncProgress = "Syncing..."
+        syncProgress = "Preparing sync...\nThis may take a moment"
 
         Task {
-            let syncedCount = await syncFromiCloud { [weak self] current, total in
+            let syncedCount = await syncFromiCloud { [weak self] trackName, current, total in
                 await MainActor.run {
-                    self?.syncProgress = "Syncing... (\(current) of \(total))"
+                    self?.syncProgress = "Syncing \"\(trackName)\"\n(\(current) of \(total))"
                 }
             }
 
@@ -281,7 +281,8 @@ final class iPodState {
     }
 
     /// Download files from iCloud to local folder
-    private func syncFromiCloud(progress: ((Int, Int) async -> Void)? = nil) async -> Int {
+    /// Progress callback: (trackName, current, total)
+    private func syncFromiCloud(progress: ((String, Int, Int) async -> Void)? = nil) async -> Int {
         guard iCloudAvailable, let iCloudBase = iCloudURL else { return 0 }
 
         let fm = FileManager.default
@@ -304,14 +305,17 @@ final class iPodState {
             let relativePath = String(fileURL.path.dropFirst(iCloudTracksDir.path.count + 1))
             let destURL = localTracksDir.appendingPathComponent(relativePath)
 
+            // Get track name for display
+            let trackName = fileURL.deletingPathExtension().lastPathComponent
+
             // Skip if already exists locally
             if fm.fileExists(atPath: destURL.path) {
                 skippedCount += 1
                 continue
             }
 
-            // Update progress
-            await progress?(currentTrack, totalTracks)
+            // Update progress with track name
+            await progress?(trackName, currentTrack, totalTracks)
 
             // Wait for iCloud file to download (up to 10 seconds per file)
             let isDownloaded = await waitForDownload(fileURL, timeout: 10)
