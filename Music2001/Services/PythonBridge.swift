@@ -62,19 +62,21 @@ class PythonBridge: ObservableObject {
     // For development: use system Python if bundled not available
     private var developmentPythonPath: URL? {
         // Check common locations - prefer Python 3.11+ for latest yt-dlp
+        // Note: With App Sandbox, we can only access /usr/bin paths reliably
         let paths = [
-            "/opt/homebrew/bin/python3.11",
-            "/opt/homebrew/bin/python3.12",
+            "/usr/bin/python3",  // System Python (always accessible)
             "/opt/homebrew/bin/python3",
-            "/usr/local/bin/python3",
-            "/usr/bin/python3"
+            "/opt/homebrew/bin/python3.12",
+            "/opt/homebrew/bin/python3.11",
+            "/usr/local/bin/python3"
         ]
         for path in paths {
             if FileManager.default.fileExists(atPath: path) {
                 return URL(fileURLWithPath: path)
             }
         }
-        return nil
+        // Fallback: try /usr/bin/python3 even if fileExists fails (sandbox may block check)
+        return URL(fileURLWithPath: "/usr/bin/python3")
     }
 
     func execute(
@@ -106,7 +108,7 @@ class PythonBridge: ObservableObject {
         pythonPath = devPython
 
         // Use the script from project directory
-        let projectScript = URL(fileURLWithPath: "/Users/christian/Desktop/mixor/Python/mixor_cli.py")
+        let projectScript = URL(fileURLWithPath: "/Users/christian/Desktop/MusicIn2001/Python/mixor_cli.py")
         if FileManager.default.fileExists(atPath: projectScript.path) {
             scriptPath = projectScript
         } else if let bundledScript = mixorScript,

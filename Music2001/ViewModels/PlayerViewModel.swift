@@ -965,6 +965,25 @@ class PlayerViewModel: ObservableObject {
         return urlString
     }
 
+    /// Get path to yt-dlp binary (bundled or homebrew)
+    private var ytdlpPath: URL? {
+        // Check bundle first
+        if let bundled = Bundle.main.url(forResource: "yt-dlp", withExtension: nil) {
+            return bundled
+        }
+        // Development: check Resources folder
+        let devPath = URL(fileURLWithPath: "/Users/christian/Desktop/MusicIn2001/Music2001/Resources/yt-dlp")
+        if FileManager.default.fileExists(atPath: devPath.path) {
+            return devPath
+        }
+        // Fallback: homebrew
+        let brewPath = URL(fileURLWithPath: "/opt/homebrew/bin/yt-dlp")
+        if FileManager.default.fileExists(atPath: brewPath.path) {
+            return brewPath
+        }
+        return nil
+    }
+
     private func downloadWithMetadata(from urlString: String) async throws -> TrackMetadata {
         let outputDir = fileManager.fullTracksDirectory
         let artworkDir = fileManager.artworkDirectory
@@ -977,7 +996,12 @@ class PlayerViewModel: ObservableObject {
         print("[MyMusic] Cleaned URL: \(cleanedURL)")
 
         let downloadStartTime = Date()
-        let pythonPath = "/opt/homebrew/bin/python3.11"
+
+        // Get yt-dlp path
+        guard let ytdlp = ytdlpPath else {
+            throw NSError(domain: "PlayerViewModel", code: 0, userInfo: [NSLocalizedDescriptionKey: "yt-dlp not found. Install via: brew install yt-dlp"])
+        }
+
         var env = ProcessInfo.processInfo.environment
         env["PATH"] = "/opt/homebrew/bin:/usr/local/bin:" + (env["PATH"] ?? "")
 
@@ -990,9 +1014,8 @@ class PlayerViewModel: ObservableObject {
         var videoReleaseYear: Int? = nil
 
         let infoProcess = Process()
-        infoProcess.executableURL = URL(fileURLWithPath: pythonPath)
+        infoProcess.executableURL = ytdlp
         infoProcess.arguments = [
-            "-m", "yt_dlp",
             "--dump-json",
             "--no-playlist",
             cleanedURL
@@ -1076,9 +1099,8 @@ class PlayerViewModel: ObservableObject {
         await MainActor.run { downloadProgress = "Downloading audio..." }
 
         let process = Process()
-        process.executableURL = URL(fileURLWithPath: pythonPath)
+        process.executableURL = ytdlp
         process.arguments = [
-            "-m", "yt_dlp",
             "-x",
             "--audio-format", "mp3",
             "--audio-quality", "0",
