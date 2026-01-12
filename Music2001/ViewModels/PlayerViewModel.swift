@@ -984,6 +984,25 @@ class PlayerViewModel: ObservableObject {
         return nil
     }
 
+    /// Get path to ffmpeg binary (bundled or homebrew)
+    private var ffmpegPath: URL? {
+        // Check bundle first
+        if let bundled = Bundle.main.url(forResource: "ffmpeg", withExtension: nil) {
+            return bundled
+        }
+        // Development: check Resources folder
+        let devPath = URL(fileURLWithPath: "/Users/christian/Desktop/MusicIn2001/Music2001/Resources/ffmpeg")
+        if FileManager.default.fileExists(atPath: devPath.path) {
+            return devPath
+        }
+        // Fallback: homebrew
+        let brewPath = URL(fileURLWithPath: "/opt/homebrew/bin/ffmpeg")
+        if FileManager.default.fileExists(atPath: brewPath.path) {
+            return brewPath
+        }
+        return nil
+    }
+
     private func downloadWithMetadata(from urlString: String) async throws -> TrackMetadata {
         let outputDir = fileManager.fullTracksDirectory
         let artworkDir = fileManager.artworkDirectory
@@ -1108,7 +1127,7 @@ class PlayerViewModel: ObservableObject {
             "--write-thumbnail",
             "--convert-thumbnails", "jpg",
             "--no-playlist",
-            "--ffmpeg-location", "/opt/homebrew/bin",
+            "--ffmpeg-location", ffmpegPath?.deletingLastPathComponent().path ?? "/opt/homebrew/bin",
             cleanedURL
         ]
         process.environment = env
@@ -1156,7 +1175,7 @@ class PlayerViewModel: ObservableObject {
         let tempURL = fileURL.deletingLastPathComponent().appendingPathComponent("temp_\(UUID().uuidString).mp3")
 
         let ffmpegProcess = Process()
-        ffmpegProcess.executableURL = URL(fileURLWithPath: "/opt/homebrew/bin/ffmpeg")
+        ffmpegProcess.executableURL = ffmpegPath ?? URL(fileURLWithPath: "/opt/homebrew/bin/ffmpeg")
         ffmpegProcess.arguments = [
             "-i", fileURL.path,
             "-c", "copy",
