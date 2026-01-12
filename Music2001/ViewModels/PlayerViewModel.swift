@@ -199,54 +199,20 @@ class PlayerViewModel: ObservableObject {
     // MARK: - Persistence
 
     private func loadSavedData() {
-        // Load playlists from iCloud JSON file
+        // Load playlists from iCloud
         if FileManager.default.fileExists(atPath: playlistsURL.path),
            let data = try? Data(contentsOf: playlistsURL),
            let decoded = try? JSONDecoder().decode([Playlist].self, from: data) {
             playlists = decoded
-        } else if let data = UserDefaults.standard.data(forKey: playlistsKey),
-                  let decoded = try? JSONDecoder().decode([Playlist].self, from: data) {
-            // Migrate from UserDefaults if exists
-            playlists = decoded
-            savePlaylists()  // Save to new location
         }
 
-        // Load library metadata from iCloud JSON file (preferred) or UserDefaults (legacy)
+        // Load library from iCloud
         if FileManager.default.fileExists(atPath: libraryURL.path),
            let data = try? Data(contentsOf: libraryURL),
            let decoded = try? JSONDecoder().decode([TrackMetadata].self, from: data) {
             library = decoded
-            // Migrate: check if paths need updating
-            migrateLibraryPathsIfNeeded()
-        } else if let data = UserDefaults.standard.data(forKey: libraryKey),
-                  let decoded = try? JSONDecoder().decode([TrackMetadata].self, from: data) {
-            library = decoded
-            // Migrate from UserDefaults to iCloud and fix paths
-            migrateLibraryPathsIfNeeded()
-            saveLibrary()
-            // Clean up old UserDefaults
-            UserDefaults.standard.removeObject(forKey: libraryKey)
         }
-    }
-
-    /// Migrate library paths from old ~/Music/MyMusic to iCloud container
-    private func migrateLibraryPathsIfNeeded() {
-        let iCloudBase = fileManager.musicDirectory.path
-        var needsMigration = false
-
-        // Check if any paths point to old location
-        for track in library {
-            if !track.fileURL.path.hasPrefix(iCloudBase) {
-                needsMigration = true
-                break
-            }
-        }
-
-        if needsMigration {
-            print("[MyMusic] Migrating library paths to iCloud container...")
-            // Clear library - scanLibrary will rebuild with correct paths
-            library.removeAll()
-        }
+        // If no library exists, scanLibrary() will build it fresh
     }
 
     private func savePlaylists() {
@@ -259,11 +225,9 @@ class PlayerViewModel: ObservableObject {
     }
 
     private func saveLibrary() {
-        // Save to iCloud JSON file (syncs with iOS)
+        // Save to iCloud (syncs with iOS, downloaded locally for offline use)
         if let encoded = try? JSONEncoder().encode(library) {
             try? encoded.write(to: libraryURL)
-            // Also keep local backup in UserDefaults
-            UserDefaults.standard.set(encoded, forKey: libraryKey)
         }
     }
 
