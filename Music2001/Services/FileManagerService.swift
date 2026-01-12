@@ -6,60 +6,50 @@ class FileManagerService {
 
     private let fm = FileManager.default
 
-    /// Whether iCloud Drive is available for syncing
+    /// Whether iCloud Drive is available
     private(set) var iCloudAvailable: Bool = false
 
-    /// The iCloud Drive folder URL (for syncing to other devices)
-    private var iCloudURL: URL?
-
-    /// Local folder - uses sandboxed Application Support for App Store compatibility
-    private var localMusicURL: URL {
-        fm.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
-            .appendingPathComponent("MyMusic")
-    }
+    /// The iCloud container URL - this is the ONLY storage location on Mac
+    private var containerURL: URL!
 
     private init() {
         setupDirectories()
     }
 
     private func setupDirectories() {
-        // Always create local directories (used for playback)
-        try? fm.createDirectory(at: localMusicURL, withIntermediateDirectories: true)
-        try? fm.createDirectory(at: localMusicURL.appendingPathComponent("Tracks"), withIntermediateDirectories: true)
-        try? fm.createDirectory(at: localMusicURL.appendingPathComponent("Artwork"), withIntermediateDirectories: true)
-        print("[MyMusic] Local folder: \(localMusicURL.path)")
-
-        // Also setup iCloud for syncing (if available)
+        // Mac uses iCloud container exclusively
         if let iCloudDocs = fm.url(forUbiquityContainerIdentifier: "iCloud.com.christianokeke.mymusiccontainer")?.appendingPathComponent("Documents") {
-            iCloudURL = iCloudDocs
+            containerURL = iCloudDocs
             iCloudAvailable = true
-            print("[MyMusic] iCloud available for sync: \(iCloudDocs.path)")
+            print("[MyMusic] Using iCloud container: \(iCloudDocs.path)")
 
-            // Ensure iCloud folders exist
+            // Ensure folders exist
             try? fm.createDirectory(at: iCloudDocs, withIntermediateDirectories: true)
             try? fm.createDirectory(at: iCloudDocs.appendingPathComponent("Tracks"), withIntermediateDirectories: true)
             try? fm.createDirectory(at: iCloudDocs.appendingPathComponent("Artwork"), withIntermediateDirectories: true)
         } else {
+            // Fallback if iCloud not available (shouldn't happen normally)
+            containerURL = fm.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+                .appendingPathComponent("MyMusic")
             iCloudAvailable = false
-            print("[MyMusic] iCloud not available")
+            print("[MyMusic] WARNING: iCloud not available, using local: \(containerURL.path)")
+
+            try? fm.createDirectory(at: containerURL, withIntermediateDirectories: true)
+            try? fm.createDirectory(at: containerURL.appendingPathComponent("Tracks"), withIntermediateDirectories: true)
+            try? fm.createDirectory(at: containerURL.appendingPathComponent("Artwork"), withIntermediateDirectories: true)
         }
     }
 
     // MARK: - Directory Paths
 
-    /// Main music directory - uses iCloud when available, falls back to local
+    /// Main music directory - iCloud container on Mac
     var musicDirectory: URL {
-        iCloudURL ?? localMusicURL
+        containerURL
     }
 
-    /// iCloud directory for syncing (may be nil)
+    /// iCloud directory (same as musicDirectory on Mac)
     var iCloudDirectory: URL? {
-        iCloudURL
-    }
-
-    /// Local-only directory (for fallback)
-    var localDirectory: URL {
-        localMusicURL
+        iCloudAvailable ? containerURL : nil
     }
 
     var fullTracksDirectory: URL {
@@ -105,10 +95,10 @@ class FileManagerService {
         }
     }
 
-    // MARK: - iCloud Sync
+    // MARK: - iCloud Helpers
 
     /// Collect all file URLs from a directory (synchronous helper for Swift 6 compatibility)
-    private func collectFiles(at directory: URL, withExtensions extensions: [String]) -> [URL] {
+    func collectFiles(at directory: URL, withExtensions extensions: [String]) -> [URL] {
         var files: [URL] = []
         guard let enumerator = fm.enumerator(at: directory, includingPropertiesForKeys: [.isRegularFileKey]) else {
             return files
@@ -121,147 +111,15 @@ class FileManagerService {
         return files
     }
 
-    /// Sync files bidirectionally: local ↔ iCloud
-    /// - Copies local files to iCloud (for iOS access)
-    /// - Copies iCloud files to local (for offline playback)
+    /// No-op on Mac since we use iCloud directly. Kept for API compatibility.
     func syncWithiCloud() async -> Int {
-        guard iCloudAvailable, let iCloudBase = iCloudURL else { return 0 }
-
-        var syncedCount = 0
-        let audioExtensions = ["mp3", "m4a", "wav", "aac", "flac"]
-        let imageExtensions = ["jpg", "jpeg", "png"]
-
-        // === SYNC TRACKS ===
-        let localTracksDir = localMusicURL.appendingPathComponent("Tracks")
-        let iCloudTracksDir = iCloudBase.appendingPathComponent("Tracks")
-
-        // Local → iCloud
-        let localTrackFiles = collectFiles(at: localTracksDir, withExtensions: audioExtensions)
-        for fileURL in localTrackFiles {
-            let relativePath = String(fileURL.path.dropFirst(localTracksDir.path.count + 1))
-            let destURL = iCloudTracksDir.appendingPathComponent(relativePath)
-            if !fm.fileExists(atPath: destURL.path) {
-                do {
-                    try fm.createDirectory(at: destURL.deletingLastPathComponent(), withIntermediateDirectories: true)
-                    try fm.copyItem(at: fileURL, to: destURL)
-                    print("[MyMusic] Local → iCloud: \(relativePath)")
-                    syncedCount += 1
-                } catch {
-                    print("[MyMusic] Failed: \(error.localizedDescription)")
-                }
-            }
-        }
-
-        // iCloud → Local
-        let iCloudTrackFiles = collectFiles(at: iCloudTracksDir, withExtensions: audioExtensions)
-        for fileURL in iCloudTrackFiles {
-            try? fm.startDownloadingUbiquitousItem(at: fileURL)
-            let relativePath = String(fileURL.path.dropFirst(iCloudTracksDir.path.count + 1))
-            let destURL = localTracksDir.appendingPathComponent(relativePath)
-            if !fm.fileExists(atPath: destURL.path) {
-                do {
-                    try fm.createDirectory(at: destURL.deletingLastPathComponent(), withIntermediateDirectories: true)
-                    try fm.copyItem(at: fileURL, to: destURL)
-                    print("[MyMusic] iCloud → Local: \(relativePath)")
-                    syncedCount += 1
-                } catch {
-                    print("[MyMusic] Failed: \(error.localizedDescription)")
-                }
-            }
-        }
-
-        // === SYNC ARTWORK ===
-        let localArtworkDir = localMusicURL.appendingPathComponent("Artwork")
-        let iCloudArtworkDir = iCloudBase.appendingPathComponent("Artwork")
-        try? fm.createDirectory(at: iCloudArtworkDir, withIntermediateDirectories: true)
-
-        // Local → iCloud
-        let localArtworkFiles = collectFiles(at: localArtworkDir, withExtensions: imageExtensions)
-        for fileURL in localArtworkFiles {
-            let filename = fileURL.lastPathComponent
-            let destURL = iCloudArtworkDir.appendingPathComponent(filename)
-            if !fm.fileExists(atPath: destURL.path) {
-                do {
-                    try fm.copyItem(at: fileURL, to: destURL)
-                    syncedCount += 1
-                } catch {}
-            }
-        }
-
-        // iCloud → Local
-        let iCloudArtworkFiles = collectFiles(at: iCloudArtworkDir, withExtensions: imageExtensions)
-        for fileURL in iCloudArtworkFiles {
-            try? fm.startDownloadingUbiquitousItem(at: fileURL)
-            let filename = fileURL.lastPathComponent
-            let destURL = localArtworkDir.appendingPathComponent(filename)
-            if !fm.fileExists(atPath: destURL.path) {
-                do {
-                    try fm.copyItem(at: fileURL, to: destURL)
-                    syncedCount += 1
-                } catch {}
-            }
-        }
-
-        // === SYNC PLAYLISTS ===
-        let localPlaylistsFile = localMusicURL.appendingPathComponent("playlists.json")
-        let iCloudPlaylistsFile = iCloudBase.appendingPathComponent("playlists.json")
-
-        // Use whichever is newer, or merge if needed
-        let localExists = fm.fileExists(atPath: localPlaylistsFile.path)
-        let iCloudExists = fm.fileExists(atPath: iCloudPlaylistsFile.path)
-
-        if localExists && !iCloudExists {
-            try? fm.copyItem(at: localPlaylistsFile, to: iCloudPlaylistsFile)
-        } else if iCloudExists && !localExists {
-            try? fm.startDownloadingUbiquitousItem(at: iCloudPlaylistsFile)
-            try? fm.copyItem(at: iCloudPlaylistsFile, to: localPlaylistsFile)
-        } else if localExists && iCloudExists {
-            // Both exist - use the newer one
-            let localDate = (try? fm.attributesOfItem(atPath: localPlaylistsFile.path)[.modificationDate] as? Date) ?? .distantPast
-            let iCloudDate = (try? fm.attributesOfItem(atPath: iCloudPlaylistsFile.path)[.modificationDate] as? Date) ?? .distantPast
-            if localDate > iCloudDate {
-                try? fm.removeItem(at: iCloudPlaylistsFile)
-                try? fm.copyItem(at: localPlaylistsFile, to: iCloudPlaylistsFile)
-            } else if iCloudDate > localDate {
-                try? fm.removeItem(at: localPlaylistsFile)
-                try? fm.copyItem(at: iCloudPlaylistsFile, to: localPlaylistsFile)
-            }
-        }
-
-        return syncedCount
+        // Mac uses iCloud container directly - no sync needed
+        return 0
     }
 
-    /// Copy a single file to iCloud (called after download or playlist update)
-    /// If already using iCloud as primary storage, this is a no-op
+    /// No-op on Mac since we use iCloud directly. Kept for API compatibility.
     func copyToiCloud(fileURL: URL) {
-        guard iCloudAvailable, let iCloudBase = iCloudURL else { return }
-
-        // If file is already in iCloud container, no need to copy
-        if fileURL.path.hasPrefix(iCloudBase.path) {
-            return
-        }
-
-        // Calculate relative path from the music directory
-        let musicDir = musicDirectory
-        guard fileURL.path.hasPrefix(musicDir.path) else { return }
-        let relativePath = String(fileURL.path.dropFirst(musicDir.path.count + 1))
-        let destURL = iCloudBase.appendingPathComponent(relativePath)
-
-        DispatchQueue.global(qos: .background).async { [weak self] in
-            guard let self = self else { return }
-            do {
-                try self.fm.createDirectory(at: destURL.deletingLastPathComponent(), withIntermediateDirectories: true)
-
-                // Remove existing file if present, then copy
-                if self.fm.fileExists(atPath: destURL.path) {
-                    try self.fm.removeItem(at: destURL)
-                }
-                try self.fm.copyItem(at: fileURL, to: destURL)
-                print("[MyMusic] Synced to iCloud: \(relativePath)")
-            } catch {
-                print("[MyMusic] iCloud sync failed: \(error.localizedDescription)")
-            }
-        }
+        // Mac uses iCloud container directly - files are already in iCloud
     }
 
     // MARK: - File Operations
