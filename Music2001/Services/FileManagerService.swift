@@ -27,6 +27,11 @@ class FileManagerService {
             try? fm.createDirectory(at: iCloudDocs, withIntermediateDirectories: true)
             try? fm.createDirectory(at: iCloudDocs.appendingPathComponent("Tracks"), withIntermediateDirectories: true)
             try? fm.createDirectory(at: iCloudDocs.appendingPathComponent("Artwork"), withIntermediateDirectories: true)
+
+            // Download all files for offline playback
+            DispatchQueue.main.async { [weak self] in
+                self?.downloadAllForOffline()
+            }
         } else {
             // Fallback if iCloud not available (shouldn't happen normally)
             containerURL = fm.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
@@ -111,9 +116,43 @@ class FileManagerService {
         return files
     }
 
+    /// Download all iCloud files for offline playback
+    /// Call this at app launch to ensure files are available offline
+    func downloadAllForOffline() {
+        guard iCloudAvailable else { return }
+
+        DispatchQueue.global(qos: .utility).async { [weak self] in
+            guard let self = self else { return }
+
+            let audioExtensions = ["mp3", "m4a", "wav", "aac", "flac"]
+            let imageExtensions = ["jpg", "jpeg", "png"]
+
+            // Download all tracks
+            let tracks = self.collectFiles(at: self.fullTracksDirectory, withExtensions: audioExtensions)
+            for fileURL in tracks {
+                try? self.fm.startDownloadingUbiquitousItem(at: fileURL)
+            }
+
+            // Download all artwork
+            let artwork = self.collectFiles(at: self.artworkDirectory, withExtensions: imageExtensions)
+            for fileURL in artwork {
+                try? self.fm.startDownloadingUbiquitousItem(at: fileURL)
+            }
+
+            // Download playlists
+            let playlistsFile = self.musicDirectory.appendingPathComponent("playlists.json")
+            if self.fm.fileExists(atPath: playlistsFile.path) {
+                try? self.fm.startDownloadingUbiquitousItem(at: playlistsFile)
+            }
+
+            print("[MyMusic] Downloading all files for offline use...")
+        }
+    }
+
     /// No-op on Mac since we use iCloud directly. Kept for API compatibility.
     func syncWithiCloud() async -> Int {
-        // Mac uses iCloud container directly - no sync needed
+        // Trigger download for offline use
+        downloadAllForOffline()
         return 0
     }
 
