@@ -48,7 +48,7 @@ git clone https://github.com/okekedev/MusicIn2001.git
 cd MusicIn2001
 
 # Open in Xcode
-open Mixor.xcodeproj
+open Music2001.xcodeproj
 
 # Build and run (Cmd + R)
 ```

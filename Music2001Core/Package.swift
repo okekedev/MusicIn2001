@@ -2,20 +2,20 @@
 import PackageDescription
 
 let package = Package(
-    name: "MixorCore",
+    name: "Music2001Core",
     platforms: [
         .iOS(.v16),
         .macOS(.v13)
     ],
     products: [
         .library(
-            name: "MixorCore",
-            targets: ["MixorCore"]
+            name: "Music2001Core",
+            targets: ["Music2001Core"]
         ),
     ],
     targets: [
         .target(
-            name: "MixorCore",
+            name: "Music2001Core",
             dependencies: []
         ),
     ]

@@ -74,7 +74,7 @@ class ThemeManager: ObservableObject {
     var textTertiary: Color { Color(hue: textH, saturation: textS, brightness: textB * 0.4) }
 }
 
-struct MixorTheme {
+struct Music2001Theme {
     private static var tm: ThemeManager { ThemeManager.shared }
 
     static var primary: Color { tm.primary }
@@ -119,12 +119,12 @@ struct PrimaryButtonStyle: ButtonStyle {
                     if isDisabled {
                         Color.gray.opacity(0.3)
                     } else {
-                        MixorTheme.primaryGradient
+                        Music2001Theme.primaryGradient
                     }
                 }
             )
-            .cornerRadius(MixorTheme.smallCornerRadius)
-            .shadow(color: isDisabled ? .clear : MixorTheme.primary.opacity(0.4), radius: 8, y: 4)
+            .cornerRadius(Music2001Theme.smallCornerRadius)
+            .shadow(color: isDisabled ? .clear : Music2001Theme.primary.opacity(0.4), radius: 8, y: 4)
             .scaleEffect(configuration.isPressed ? 0.97 : 1.0)
             .animation(.easeInOut(duration: 0.15), value: configuration.isPressed)
     }
@@ -134,11 +134,11 @@ struct SecondaryButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.subheadline.weight(.medium))
-            .foregroundColor(MixorTheme.primary)
+            .foregroundColor(Music2001Theme.primary)
             .padding(.horizontal, 20)
             .padding(.vertical, 12)
-            .background(MixorTheme.primary.opacity(0.1))
-            .cornerRadius(MixorTheme.smallCornerRadius)
+            .background(Music2001Theme.primary.opacity(0.1))
+            .cornerRadius(Music2001Theme.smallCornerRadius)
             .scaleEffect(configuration.isPressed ? 0.97 : 1.0)
             .animation(.easeInOut(duration: 0.15), value: configuration.isPressed)
     }
@@ -148,13 +148,13 @@ struct GhostButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.subheadline.weight(.medium))
-            .foregroundColor(MixorTheme.textSecondary)
+            .foregroundColor(Music2001Theme.textSecondary)
             .padding(.horizontal, 16)
             .padding(.vertical, 10)
             .background(Color.clear)
             .overlay(
-                RoundedRectangle(cornerRadius: MixorTheme.smallCornerRadius)
-                    .stroke(MixorTheme.textTertiary, lineWidth: 1)
+                RoundedRectangle(cornerRadius: Music2001Theme.smallCornerRadius)
+                    .stroke(Music2001Theme.textTertiary, lineWidth: 1)
             )
             .scaleEffect(configuration.isPressed ? 0.97 : 1.0)
             .animation(.easeInOut(duration: 0.15), value: configuration.isPressed)
@@ -164,19 +164,19 @@ struct GhostButtonStyle: ButtonStyle {
 // MARK: - Card Style
 
 struct CardStyle: ViewModifier {
-    var padding: CGFloat = MixorTheme.spacing
+    var padding: CGFloat = Music2001Theme.spacing
 
     func body(content: Content) -> some View {
         content
             .padding(padding)
-            .background(MixorTheme.cardBackground)
-            .cornerRadius(MixorTheme.cornerRadius)
-            .shadow(color: MixorTheme.shadowColor, radius: MixorTheme.shadowRadius, y: 4)
+            .background(Music2001Theme.cardBackground)
+            .cornerRadius(Music2001Theme.cornerRadius)
+            .shadow(color: Music2001Theme.shadowColor, radius: Music2001Theme.shadowRadius, y: 4)
     }
 }
 
 extension View {
-    func cardStyle(padding: CGFloat = MixorTheme.spacing) -> some View {
+    func cardStyle(padding: CGFloat = Music2001Theme.spacing) -> some View {
         modifier(CardStyle(padding: padding))
     }
 }
@@ -192,13 +192,13 @@ struct ProgressRing: View {
         ZStack {
             // Background ring
             Circle()
-                .stroke(MixorTheme.primary.opacity(0.2), lineWidth: lineWidth)
+                .stroke(Music2001Theme.primary.opacity(0.2), lineWidth: lineWidth)
 
             // Progress ring
             Circle()
                 .trim(from: 0, to: progress)
                 .stroke(
-                    MixorTheme.primaryGradient,
+                    Music2001Theme.primaryGradient,
                     style: StrokeStyle(lineWidth: lineWidth, lineCap: .round)
                 )
                 .rotationEffect(.degrees(-90))
@@ -208,10 +208,10 @@ struct ProgressRing: View {
             VStack(spacing: 4) {
                 Text("\(Int(progress * 100))")
                     .font(.system(size: 32, weight: .bold, design: .rounded))
-                    .foregroundColor(MixorTheme.textPrimary)
+                    .foregroundColor(Music2001Theme.textPrimary)
                 Text("%")
                     .font(.caption)
-                    .foregroundColor(MixorTheme.textSecondary)
+                    .foregroundColor(Music2001Theme.textSecondary)
             }
         }
         .frame(width: size, height: size)
@@ -228,7 +228,7 @@ struct WaveformView: View {
         HStack(spacing: 4) {
             ForEach(0..<barCount, id: \.self) { index in
                 RoundedRectangle(cornerRadius: 2)
-                    .fill(MixorTheme.primaryGradient)
+                    .fill(Music2001Theme.primaryGradient)
                     .frame(width: 4, height: animating ? CGFloat.random(in: 15...35) : 15)
                     .animation(
                         .easeInOut(duration: 0.4)
@@ -256,35 +256,35 @@ struct DropZoneView: View {
         VStack(spacing: 16) {
             ZStack {
                 Circle()
-                    .fill(MixorTheme.primary.opacity(0.1))
+                    .fill(Music2001Theme.primary.opacity(0.1))
                     .frame(width: 72, height: 72)
 
                 Image(systemName: icon)
                     .font(.system(size: 28))
-                    .foregroundColor(MixorTheme.primary)
+                    .foregroundColor(Music2001Theme.primary)
             }
 
             VStack(spacing: 6) {
                 Text(title)
                     .font(.headline)
-                    .foregroundColor(MixorTheme.textPrimary)
+                    .foregroundColor(Music2001Theme.textPrimary)
 
                 Text(subtitle)
                     .font(.subheadline)
-                    .foregroundColor(MixorTheme.textSecondary)
+                    .foregroundColor(Music2001Theme.textSecondary)
             }
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 40)
         .background(
-            RoundedRectangle(cornerRadius: MixorTheme.cornerRadius)
+            RoundedRectangle(cornerRadius: Music2001Theme.cornerRadius)
                 .strokeBorder(
-                    isTargeted ? MixorTheme.primary : MixorTheme.textTertiary.opacity(0.3),
+                    isTargeted ? Music2001Theme.primary : Music2001Theme.textTertiary.opacity(0.3),
                     style: StrokeStyle(lineWidth: 2, dash: hasContent ? [] : [10])
                 )
                 .background(
-                    RoundedRectangle(cornerRadius: MixorTheme.cornerRadius)
-                        .fill(isTargeted ? MixorTheme.primary.opacity(0.05) : Color.clear)
+                    RoundedRectangle(cornerRadius: Music2001Theme.cornerRadius)
+                        .fill(isTargeted ? Music2001Theme.primary.opacity(0.05) : Color.clear)
                 )
         )
         .animation(.easeInOut(duration: 0.2), value: isTargeted)
@@ -301,12 +301,12 @@ struct SectionHeader: View {
         VStack(alignment: .leading, spacing: 4) {
             Text(title)
                 .font(.title3.weight(.semibold))
-                .foregroundColor(MixorTheme.textPrimary)
+                .foregroundColor(Music2001Theme.textPrimary)
 
             if let subtitle = subtitle {
                 Text(subtitle)
                     .font(.subheadline)
-                    .foregroundColor(MixorTheme.textSecondary)
+                    .foregroundColor(Music2001Theme.textSecondary)
             }
         }
     }

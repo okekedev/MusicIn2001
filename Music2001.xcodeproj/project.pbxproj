@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A10000010000000000000001 /* MixorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000001 /* MixorApp.swift */; };
+		A10000010000000000000001 /* Music2001App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000001 /* Music2001App.swift */; };
 		A10000010000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000002 /* ContentView.swift */; };
 		A10000010000000000000003 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000003 /* AppState.swift */; };
 		A10000010000000000000010 /* AudioTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000010 /* AudioTrack.swift */; };
@@ -21,20 +21,20 @@
 		A10000010000000000000018 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000018 /* KeychainService.swift */; };
 		A10000010000000000000019 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000019 /* Assets.xcassets */; };
 		A10000010000000000000020 /* Python in Resources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000020 /* Python */; };
-		A10000010000000000000021 /* MixorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000023 /* MixorTheme.swift */; };
+		A10000010000000000000021 /* Music2001Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000023 /* Music2001Theme.swift */; };
 		A10000010000000000000026 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000026 /* PlayerView.swift */; };
 		A10000010000000000000027 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000027 /* PlayerViewModel.swift */; };
 		AA2AE1B32F0CAC73002630C7 /* ClickWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2AE1AB2F0CAC73002630C7 /* ClickWheelView.swift */; };
 		AA2AE1B42F0CAC73002630C7 /* iPodTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2AE1A92F0CAC73002630C7 /* iPodTypes.swift */; };
 		AA2AE1B52F0CAC73002630C7 /* iPodState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2AE1AF2F0CAC73002630C7 /* iPodState.swift */; };
-		AA2AE1B62F0CAC73002630C7 /* MixoriOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2AE1B12F0CAC73002630C7 /* MixoriOSApp.swift */; };
+		AA2AE1B62F0CAC73002630C7 /* Music2001iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2AE1B12F0CAC73002630C7 /* Music2001iOSApp.swift */; };
 		AA2AE1B72F0CAC73002630C7 /* iPodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2AE1AC2F0CAC73002630C7 /* iPodView.swift */; };
 		AA2AE1B82F0CAC73002630C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA2AE1AE2F0CAC73002630C7 /* Assets.xcassets */; };
 		AA2AE1C02F0CAC73002630C7 /* TipManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2AE1BF2F0CAC73002630C7 /* TipManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A10000020000000000000001 /* MixorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixorApp.swift; sourceTree = "<group>"; };
+		A10000020000000000000001 /* Music2001App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music2001App.swift; sourceTree = "<group>"; };
 		A10000020000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A10000020000000000000003 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		A10000020000000000000010 /* AudioTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTrack.swift; sourceTree = "<group>"; };
@@ -49,19 +49,19 @@
 		A10000020000000000000019 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A10000020000000000000020 /* Python */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Python; sourceTree = "<group>"; };
 		A10000020000000000000021 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A10000020000000000000022 /* Mixor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mixor.entitlements; sourceTree = "<group>"; };
-		A10000020000000000000023 /* MixorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixorTheme.swift; sourceTree = "<group>"; };
+		A10000020000000000000022 /* Music2001.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Music2001.entitlements; sourceTree = "<group>"; };
+		A10000020000000000000023 /* Music2001Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music2001Theme.swift; sourceTree = "<group>"; };
 		A10000020000000000000026 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		A10000020000000000000027 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
-		A10000030000000000000001 /* MixorApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MixorApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA2AE1722F0C2F0D002630C7 /* MixorIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MixorIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A10000030000000000000001 /* Music2001App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Music2001App.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA2AE1722F0C2F0D002630C7 /* Music2001iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Music2001iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2AE1A92F0CAC73002630C7 /* iPodTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPodTypes.swift; sourceTree = "<group>"; };
 		AA2AE1AB2F0CAC73002630C7 /* ClickWheelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickWheelView.swift; sourceTree = "<group>"; };
 		AA2AE1AC2F0CAC73002630C7 /* iPodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPodView.swift; sourceTree = "<group>"; };
 		AA2AE1AE2F0CAC73002630C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA2AE1AF2F0CAC73002630C7 /* iPodState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPodState.swift; sourceTree = "<group>"; };
-		AA2AE1B02F0CAC73002630C7 /* MixoriOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MixoriOS.entitlements; sourceTree = "<group>"; };
-		AA2AE1B12F0CAC73002630C7 /* MixoriOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixoriOSApp.swift; sourceTree = "<group>"; };
+		AA2AE1B02F0CAC73002630C7 /* Music2001iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Music2001iOS.entitlements; sourceTree = "<group>"; };
+		AA2AE1B12F0CAC73002630C7 /* Music2001iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music2001iOSApp.swift; sourceTree = "<group>"; };
 		AA2AE1BF2F0CAC73002630C7 /* TipManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,14 +86,14 @@
 		A10000050000000000000001 = {
 			isa = PBXGroup;
 			children = (
-				AA2AE1B22F0CAC73002630C7 /* MixoriOS */,
-				A10000050000000000000002 /* Mixor */,
+				AA2AE1B22F0CAC73002630C7 /* Music2001iOS */,
+				A10000050000000000000002 /* Music2001 */,
 				A10000020000000000000020 /* Python */,
 				A10000050000000000000003 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		A10000050000000000000002 /* Mixor */ = {
+		A10000050000000000000002 /* Music2001 */ = {
 			isa = PBXGroup;
 			children = (
 				A10000050000000000000004 /* App */,
@@ -103,16 +103,16 @@
 				A10000050000000000000008 /* Services */,
 				A10000050000000000000009 /* Resources */,
 				A10000020000000000000021 /* Info.plist */,
-				A10000020000000000000022 /* Mixor.entitlements */,
+				A10000020000000000000022 /* Music2001.entitlements */,
 			);
-			path = Mixor;
+			path = Music2001;
 			sourceTree = "<group>";
 		};
 		A10000050000000000000003 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A10000030000000000000001 /* MixorApp.app */,
-				AA2AE1722F0C2F0D002630C7 /* MixorIOS.app */,
+				A10000030000000000000001 /* Music2001App.app */,
+				AA2AE1722F0C2F0D002630C7 /* Music2001iOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -120,7 +120,7 @@
 		A10000050000000000000004 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				A10000020000000000000001 /* MixorApp.swift */,
+				A10000020000000000000001 /* Music2001App.swift */,
 				A10000020000000000000002 /* ContentView.swift */,
 				A10000020000000000000003 /* AppState.swift */,
 			);
@@ -178,7 +178,7 @@
 		A10000050000000000000013 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				A10000020000000000000023 /* MixorTheme.swift */,
+				A10000020000000000000023 /* Music2001Theme.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -208,7 +208,7 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		AA2AE1B22F0CAC73002630C7 /* MixoriOS */ = {
+		AA2AE1B22F0CAC73002630C7 /* Music2001iOS */ = {
 			isa = PBXGroup;
 			children = (
 				AA2AE1AA2F0CAC73002630C7 /* Models */,
@@ -216,18 +216,18 @@
 				AA2AE1AE2F0CAC73002630C7 /* Assets.xcassets */,
 				AA2AE1AF2F0CAC73002630C7 /* iPodState.swift */,
 				AA2AE1BF2F0CAC73002630C7 /* TipManager.swift */,
-				AA2AE1B02F0CAC73002630C7 /* MixoriOS.entitlements */,
-				AA2AE1B12F0CAC73002630C7 /* MixoriOSApp.swift */,
+				AA2AE1B02F0CAC73002630C7 /* Music2001iOS.entitlements */,
+				AA2AE1B12F0CAC73002630C7 /* Music2001iOSApp.swift */,
 			);
-			path = MixoriOS;
+			path = Music2001iOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A10000060000000000000001 /* MixorApp */ = {
+		A10000060000000000000001 /* Music2001App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A10000080000000000000001 /* Build configuration list for PBXNativeTarget "MixorApp" */;
+			buildConfigurationList = A10000080000000000000001 /* Build configuration list for PBXNativeTarget "Music2001App" */;
 			buildPhases = (
 				A10000070000000000000001 /* Sources */,
 				A10000040000000000000001 /* Frameworks */,
@@ -237,14 +237,14 @@
 			);
 			dependencies = (
 			);
-			name = MixorApp;
-			productName = MixorApp;
-			productReference = A10000030000000000000001 /* MixorApp.app */;
+			name = Music2001App;
+			productName = Music2001App;
+			productReference = A10000030000000000000001 /* Music2001App.app */;
 			productType = "com.apple.product-type.application";
 		};
-		AA2AE1712F0C2F0D002630C7 /* MixorIOS */ = {
+		AA2AE1712F0C2F0D002630C7 /* Music2001iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AA2AE17C2F0C2F0F002630C7 /* Build configuration list for PBXNativeTarget "MixorIOS" */;
+			buildConfigurationList = AA2AE17C2F0C2F0F002630C7 /* Build configuration list for PBXNativeTarget "Music2001iOS" */;
 			buildPhases = (
 				AA2AE16E2F0C2F0D002630C7 /* Sources */,
 				AA2AE16F2F0C2F0D002630C7 /* Frameworks */,
@@ -254,11 +254,11 @@
 			);
 			dependencies = (
 			);
-			name = MixorIOS;
+			name = Music2001iOS;
 			packageProductDependencies = (
 			);
-			productName = MixorIOS;
-			productReference = AA2AE1722F0C2F0D002630C7 /* MixorIOS.app */;
+			productName = Music2001iOS;
+			productReference = AA2AE1722F0C2F0D002630C7 /* Music2001iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -279,7 +279,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A10000080000000000000002 /* Build configuration list for PBXProject "Mixor" */;
+			buildConfigurationList = A10000080000000000000002 /* Build configuration list for PBXProject "Music2001" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -292,8 +292,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A10000060000000000000001 /* MixorApp */,
-				AA2AE1712F0C2F0D002630C7 /* MixorIOS */,
+				A10000060000000000000001 /* Music2001App */,
+				AA2AE1712F0C2F0D002630C7 /* Music2001iOS */,
 			);
 		};
 /* End PBXProject section */
@@ -323,11 +323,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A10000010000000000000001 /* MixorApp.swift in Sources */,
+				A10000010000000000000001 /* Music2001App.swift in Sources */,
 				A10000010000000000000002 /* ContentView.swift in Sources */,
 				A10000010000000000000003 /* AppState.swift in Sources */,
 				A10000010000000000000026 /* PlayerView.swift in Sources */,
-				A10000010000000000000021 /* MixorTheme.swift in Sources */,
+				A10000010000000000000021 /* Music2001Theme.swift in Sources */,
 				A10000010000000000000027 /* PlayerViewModel.swift in Sources */,
 				A10000010000000000000010 /* AudioTrack.swift in Sources */,
 				A10000010000000000000011 /* ProcessingJob.swift in Sources */,
@@ -349,7 +349,7 @@
 				AA2AE1B42F0CAC73002630C7 /* iPodTypes.swift in Sources */,
 				AA2AE1B52F0CAC73002630C7 /* iPodState.swift in Sources */,
 				AA2AE1C02F0CAC73002630C7 /* TipManager.swift in Sources */,
-				AA2AE1B62F0CAC73002630C7 /* MixoriOSApp.swift in Sources */,
+				AA2AE1B62F0CAC73002630C7 /* Music2001iOSApp.swift in Sources */,
 				AA2AE1B72F0CAC73002630C7 /* iPodView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -488,7 +488,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				AUTOMATION_APPLE_EVENTS = NO;
-				CODE_SIGN_ENTITLEMENTS = Mixor/Mixor.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Music2001/Music2001.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -503,7 +503,7 @@
 				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
 				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Mixor/Info.plist;
+				INFOPLIST_FILE = Music2001/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Music 2001";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright 2024. All rights reserved.";
@@ -532,7 +532,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				AUTOMATION_APPLE_EVENTS = NO;
-				CODE_SIGN_ENTITLEMENTS = Mixor/Mixor.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Music2001/Music2001.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -547,7 +547,7 @@
 				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
 				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Mixor/Info.plist;
+				INFOPLIST_FILE = Music2001/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Music 2001";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright 2024. All rights reserved.";
@@ -575,13 +575,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = MixoriOS/MixoriOS.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Music2001iOS/Music2001iOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MixoriOS/Info.plist;
+				INFOPLIST_FILE = Music2001iOS/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Music 2001";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -617,13 +617,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = MixoriOS/MixoriOS.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Music2001iOS/Music2001iOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MixoriOS/Info.plist;
+				INFOPLIST_FILE = Music2001iOS/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Music 2001";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -657,7 +657,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A10000080000000000000001 /* Build configuration list for PBXNativeTarget "MixorApp" */ = {
+		A10000080000000000000001 /* Build configuration list for PBXNativeTarget "Music2001App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A100000A0000000000000003 /* Debug */,
@@ -666,7 +666,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A10000080000000000000002 /* Build configuration list for PBXProject "Mixor" */ = {
+		A10000080000000000000002 /* Build configuration list for PBXProject "Music2001" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A100000A0000000000000001 /* Debug */,
@@ -675,7 +675,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AA2AE17C2F0C2F0F002630C7 /* Build configuration list for PBXNativeTarget "MixorIOS" */ = {
+		AA2AE17C2F0C2F0F002630C7 /* Build configuration list for PBXNativeTarget "Music2001iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA2AE17A2F0C2F0F002630C7 /* Debug */,

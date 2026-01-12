@@ -1,6 +1,6 @@
 //
 //  iPodView.swift
-//  MixoriOS
+//  Music2001iOS
 //
 
 import SwiftUI

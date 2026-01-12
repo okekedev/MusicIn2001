@@ -62,7 +62,7 @@ struct PlayerView: View {
                         .onEnded { _ in dismissControls() }
                 )
         }
-        .background(MixorTheme.background)
+        .background(Music2001Theme.background)
         .alert("Error", isPresented: $viewModel.showError) {
             Button("OK", role: .cancel) { }
         } message: {
@@ -92,7 +92,7 @@ struct PlayerView: View {
                 pendingTrackPlay = nil
             }
         } message: {
-            Text("Playing this track will stop the Mixor. Are you sure?")
+            Text("Playing this track will stop the mixer. Are you sure?")
         }
     }
 
@@ -118,11 +118,11 @@ struct PlaylistSidebar: View {
             HStack {
                 Text("Library")
                     .font(.subheadline.weight(.semibold))
-                    .foregroundColor(MixorTheme.textPrimary)
+                    .foregroundColor(Music2001Theme.textPrimary)
                 Spacer()
             }
             .padding(12)
-            .background(MixorTheme.cardBackground)
+            .background(Music2001Theme.cardBackground)
 
             // View mode options
             VStack(spacing: 2) {
@@ -170,14 +170,14 @@ struct PlaylistSidebar: View {
             HStack {
                 Text("Playlists")
                     .font(.caption)
-                    .foregroundColor(MixorTheme.textSecondary)
+                    .foregroundColor(Music2001Theme.textSecondary)
                 Spacer()
                 Button {
                     viewModel.createNewPlaylistInline()
                 } label: {
                     Image(systemName: "plus")
                         .font(.caption)
-                        .foregroundColor(MixorTheme.primary)
+                        .foregroundColor(Music2001Theme.primary)
                 }
                 .buttonStyle(.plain)
             }
@@ -224,7 +224,7 @@ struct PlaylistSidebar: View {
 
             Spacer()
         }
-        .background(MixorTheme.cardBackground.opacity(0.5))
+        .background(Music2001Theme.cardBackground.opacity(0.5))
     }
 }
 
@@ -252,20 +252,20 @@ struct PlaylistRow: View {
             HStack(spacing: 8) {
                 Image(systemName: "music.note.list")
                     .font(.caption)
-                    .foregroundColor(isSelected ? MixorTheme.primary : MixorTheme.textSecondary)
+                    .foregroundColor(isSelected ? Music2001Theme.primary : Music2001Theme.textSecondary)
                 Text(playlist.name)
                     .font(.caption)
-                    .foregroundColor(MixorTheme.textPrimary)
+                    .foregroundColor(Music2001Theme.textPrimary)
                     .lineLimit(1)
                 Spacer()
                 Text("\(playlist.trackIDs.count)")
                     .font(.caption2)
-                    .foregroundColor(MixorTheme.textTertiary)
+                    .foregroundColor(Music2001Theme.textTertiary)
             }
             .padding(.horizontal, 8)
             .padding(.vertical, 6)
             .frame(maxWidth: .infinity)
-            .background(isDropTargeted ? MixorTheme.primary.opacity(0.3) : (isSelected ? MixorTheme.primary.opacity(0.15) : Color.clear))
+            .background(isDropTargeted ? Music2001Theme.primary.opacity(0.3) : (isSelected ? Music2001Theme.primary.opacity(0.15) : Color.clear))
             .cornerRadius(6)
             .contentShape(Rectangle())
         }
@@ -307,7 +307,7 @@ struct EditablePlaylistRow: View {
         HStack(spacing: 8) {
             Image(systemName: "music.note.list")
                 .font(.caption)
-                .foregroundColor(MixorTheme.primary)
+                .foregroundColor(Music2001Theme.primary)
             TextField("Playlist name", text: $name)
                 .font(.caption)
                 .textFieldStyle(.plain)
@@ -321,7 +321,7 @@ struct EditablePlaylistRow: View {
         }
         .padding(.horizontal, 8)
         .padding(.vertical, 6)
-        .background(MixorTheme.primary.opacity(0.15))
+        .background(Music2001Theme.primary.opacity(0.15))
         .cornerRadius(6)
         .onAppear {
             isFocused = true
@@ -341,19 +341,19 @@ struct SidebarButton: View {
             HStack(spacing: 8) {
                 Image(systemName: icon)
                     .font(.caption)
-                    .foregroundColor(isSelected ? MixorTheme.primary : MixorTheme.textSecondary)
+                    .foregroundColor(isSelected ? Music2001Theme.primary : Music2001Theme.textSecondary)
                 Text(title)
                     .font(.caption)
-                    .foregroundColor(MixorTheme.textPrimary)
+                    .foregroundColor(Music2001Theme.textPrimary)
                 Spacer()
                 Text("\(count)")
                     .font(.caption2)
-                    .foregroundColor(MixorTheme.textTertiary)
+                    .foregroundColor(Music2001Theme.textTertiary)
             }
             .padding(.horizontal, 8)
             .padding(.vertical, 6)
             .frame(maxWidth: .infinity)
-            .background(isSelected ? MixorTheme.primary.opacity(0.15) : Color.clear)
+            .background(isSelected ? Music2001Theme.primary.opacity(0.15) : Color.clear)
             .cornerRadius(6)
             .contentShape(Rectangle())
         }
@@ -424,7 +424,7 @@ struct TrackListView: View {
                                 Text("Back")
                                     .font(.caption)
                             }
-                            .foregroundColor(MixorTheme.primary)
+                            .foregroundColor(Music2001Theme.primary)
                         }
                         .buttonStyle(.plain)
                     }
@@ -433,7 +433,7 @@ struct TrackListView: View {
 
                     Text(headerTitle)
                         .font(.subheadline.weight(.medium))
-                        .foregroundColor(MixorTheme.textPrimary)
+                        .foregroundColor(Music2001Theme.textPrimary)
 
                     Spacer()
 
@@ -448,10 +448,10 @@ struct TrackListView: View {
                                 Text("Add Songs")
                                     .font(.caption)
                             }
-                            .foregroundColor(MixorTheme.primary)
+                            .foregroundColor(Music2001Theme.primary)
                             .padding(.horizontal, 10)
                             .padding(.vertical, 5)
-                            .background(MixorTheme.primary.opacity(0.15))
+                            .background(Music2001Theme.primary.opacity(0.15))
                             .cornerRadius(4)
                         }
                         .buttonStyle(.plain)
@@ -477,7 +477,7 @@ struct TrackListView: View {
                             .foregroundColor(.white)
                             .padding(.horizontal, 10)
                             .padding(.vertical, 5)
-                            .background(MixorTheme.primary)
+                            .background(Music2001Theme.primary)
                             .cornerRadius(4)
                         }
                         .buttonStyle(.plain)
@@ -485,11 +485,11 @@ struct TrackListView: View {
 
                     Text("\(tracks.count) songs")
                         .font(.caption)
-                        .foregroundColor(MixorTheme.textTertiary)
+                        .foregroundColor(Music2001Theme.textTertiary)
                         .padding(.leading, 8)
                 }
                 .padding(12)
-                .background(MixorTheme.cardBackground)
+                .background(Music2001Theme.cardBackground)
             }
 
             // Content based on view mode
@@ -504,16 +504,16 @@ struct TrackListView: View {
                     Spacer()
                     Image(systemName: searchText.isEmpty ? "music.note" : "magnifyingglass")
                         .font(.system(size: 40))
-                        .foregroundColor(MixorTheme.textTertiary.opacity(0.3))
+                        .foregroundColor(Music2001Theme.textTertiary.opacity(0.3))
                     Text(searchText.isEmpty ?
                          (viewModel.selectedPlaylist != nil ? "No tracks in playlist" : "No tracks in library") :
                          "No results found")
                         .font(.subheadline)
-                        .foregroundColor(MixorTheme.textTertiary)
+                        .foregroundColor(Music2001Theme.textTertiary)
                     if searchText.isEmpty {
                         Text("Download tracks or add files to get started")
                             .font(.caption)
-                            .foregroundColor(MixorTheme.textTertiary.opacity(0.7))
+                            .foregroundColor(Music2001Theme.textTertiary.opacity(0.7))
                     }
                     Spacer()
                 }
@@ -538,10 +538,10 @@ struct TrackListView: View {
                     Spacer().frame(width: 28)
                 }
                 .font(.caption2)
-                .foregroundColor(MixorTheme.textTertiary)
+                .foregroundColor(Music2001Theme.textTertiary)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 6)
-                .background(MixorTheme.cardBackground)
+                .background(Music2001Theme.cardBackground)
 
                 ScrollView {
                     LazyVStack(spacing: 0) {
@@ -619,8 +619,8 @@ struct TrackListView: View {
             Group {
                 if isDropTargeted {
                     RoundedRectangle(cornerRadius: 12)
-                        .stroke(MixorTheme.primary, lineWidth: 3)
-                        .background(MixorTheme.primary.opacity(0.1))
+                        .stroke(Music2001Theme.primary, lineWidth: 3)
+                        .background(Music2001Theme.primary.opacity(0.1))
                         .overlay(
                             VStack(spacing: 8) {
                                 Image(systemName: "arrow.down.doc.fill")
@@ -628,7 +628,7 @@ struct TrackListView: View {
                                 Text("Drop audio files to import")
                                     .font(.headline)
                             }
-                            .foregroundColor(MixorTheme.primary)
+                            .foregroundColor(Music2001Theme.primary)
                         )
                 }
             }
@@ -687,39 +687,39 @@ struct AddSongsToPlaylistView: View {
             HStack {
                 Text("Add Songs to \(playlist.name)")
                     .font(.headline)
-                    .foregroundColor(MixorTheme.textPrimary)
+                    .foregroundColor(Music2001Theme.textPrimary)
                 Spacer()
                 Button(action: onDismiss) {
                     Image(systemName: "xmark")
-                        .foregroundColor(MixorTheme.textTertiary)
+                        .foregroundColor(Music2001Theme.textTertiary)
                 }
                 .buttonStyle(.plain)
             }
             .padding()
-            .background(MixorTheme.cardBackground)
+            .background(Music2001Theme.cardBackground)
 
             // Search
             HStack {
                 Image(systemName: "magnifyingglass")
                     .font(.caption)
-                    .foregroundColor(MixorTheme.textTertiary)
+                    .foregroundColor(Music2001Theme.textTertiary)
                 TextField("Search songs...", text: $searchText)
                     .textFieldStyle(.plain)
                     .font(.subheadline)
-                    .foregroundColor(MixorTheme.textPrimary)
+                    .foregroundColor(Music2001Theme.textPrimary)
                 if !searchText.isEmpty {
                     Button {
                         searchText = ""
                     } label: {
                         Image(systemName: "xmark.circle.fill")
                             .font(.caption)
-                            .foregroundColor(MixorTheme.textTertiary)
+                            .foregroundColor(Music2001Theme.textTertiary)
                     }
                     .buttonStyle(.plain)
                 }
             }
             .padding(10)
-            .background(MixorTheme.elevatedBackground)
+            .background(Music2001Theme.elevatedBackground)
             .cornerRadius(8)
             .padding(.horizontal)
             .padding(.vertical, 8)
@@ -730,10 +730,10 @@ struct AddSongsToPlaylistView: View {
                     Spacer()
                     Image(systemName: searchText.isEmpty ? "music.note" : "magnifyingglass")
                         .font(.system(size: 40))
-                        .foregroundColor(MixorTheme.textTertiary.opacity(0.3))
+                        .foregroundColor(Music2001Theme.textTertiary.opacity(0.3))
                     Text(searchText.isEmpty ? "All songs already in playlist" : "No results found")
                         .font(.subheadline)
-                        .foregroundColor(MixorTheme.textTertiary)
+                        .foregroundColor(Music2001Theme.textTertiary)
                     Spacer()
                 }
             } else {
@@ -761,13 +761,13 @@ struct AddSongsToPlaylistView: View {
             HStack {
                 Text("\(selectedTrackIDs.count) selected")
                     .font(.caption)
-                    .foregroundColor(MixorTheme.textSecondary)
+                    .foregroundColor(Music2001Theme.textSecondary)
                 Spacer()
                 Button("Cancel") {
                     onDismiss()
                 }
                 .buttonStyle(.plain)
-                .foregroundColor(MixorTheme.textSecondary)
+                .foregroundColor(Music2001Theme.textSecondary)
                 .padding(.trailing, 8)
 
                 Button {
@@ -781,17 +781,17 @@ struct AddSongsToPlaylistView: View {
                         .foregroundColor(.white)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
-                        .background(selectedTrackIDs.isEmpty ? MixorTheme.textTertiary : MixorTheme.primary)
+                        .background(selectedTrackIDs.isEmpty ? Music2001Theme.textTertiary : Music2001Theme.primary)
                         .cornerRadius(6)
                 }
                 .buttonStyle(.plain)
                 .disabled(selectedTrackIDs.isEmpty)
             }
             .padding()
-            .background(MixorTheme.cardBackground)
+            .background(Music2001Theme.cardBackground)
         }
         .frame(width: 500, height: 500)
-        .background(MixorTheme.background)
+        .background(Music2001Theme.background)
     }
 }
 
@@ -809,7 +809,7 @@ struct AddSongRow: View {
                 // Checkbox
                 Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
                     .font(.title3)
-                    .foregroundColor(isSelected ? MixorTheme.primary : MixorTheme.textTertiary)
+                    .foregroundColor(isSelected ? Music2001Theme.primary : Music2001Theme.textTertiary)
 
                 // Artwork
                 if let artworkURL = track.artworkURL {
@@ -817,18 +817,18 @@ struct AddSongRow: View {
                         image.resizable().aspectRatio(contentMode: .fill)
                     } placeholder: {
                         RoundedRectangle(cornerRadius: 4)
-                            .fill(MixorTheme.elevatedBackground)
+                            .fill(Music2001Theme.elevatedBackground)
                     }
                     .frame(width: 36, height: 36)
                     .cornerRadius(4)
                 } else {
                     RoundedRectangle(cornerRadius: 4)
-                        .fill(MixorTheme.elevatedBackground)
+                        .fill(Music2001Theme.elevatedBackground)
                         .frame(width: 36, height: 36)
                         .overlay(
                             Image(systemName: "music.note")
                                 .font(.caption)
-                                .foregroundColor(MixorTheme.textSecondary)
+                                .foregroundColor(Music2001Theme.textSecondary)
                         )
                 }
 
@@ -836,11 +836,11 @@ struct AddSongRow: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(track.title)
                         .font(.subheadline)
-                        .foregroundColor(MixorTheme.textPrimary)
+                        .foregroundColor(Music2001Theme.textPrimary)
                         .lineLimit(1)
                     Text("\(track.artist) • \(track.album)")
                         .font(.caption)
-                        .foregroundColor(MixorTheme.textSecondary)
+                        .foregroundColor(Music2001Theme.textSecondary)
                         .lineLimit(1)
                 }
 
@@ -848,11 +848,11 @@ struct AddSongRow: View {
 
                 Text(track.formattedDuration)
                     .font(.caption.monospacedDigit())
-                    .foregroundColor(MixorTheme.textTertiary)
+                    .foregroundColor(Music2001Theme.textTertiary)
             }
             .padding(.horizontal, 8)
             .padding(.vertical, 6)
-            .background(isHovered ? MixorTheme.elevatedBackground.opacity(0.5) : Color.clear)
+            .background(isHovered ? Music2001Theme.elevatedBackground.opacity(0.5) : Color.clear)
             .cornerRadius(6)
         }
         .buttonStyle(.plain)
@@ -882,7 +882,7 @@ struct MiniToolbar: View {
                         HStack {
                             Text("Search")
                                 .font(.caption.weight(.medium))
-                                .foregroundColor(MixorTheme.textPrimary)
+                                .foregroundColor(Music2001Theme.textPrimary)
                             Spacer()
                             Button {
                                 withAnimation(.easeInOut(duration: 0.15)) {
@@ -892,7 +892,7 @@ struct MiniToolbar: View {
                             } label: {
                                 Image(systemName: "xmark")
                                     .font(.caption2)
-                                    .foregroundColor(MixorTheme.textTertiary)
+                                    .foregroundColor(Music2001Theme.textTertiary)
                             }
                             .buttonStyle(.plain)
                         }
@@ -900,31 +900,31 @@ struct MiniToolbar: View {
                         HStack {
                             Image(systemName: "magnifyingglass")
                                 .font(.caption2)
-                                .foregroundColor(MixorTheme.textTertiary)
+                                .foregroundColor(Music2001Theme.textTertiary)
                             TextField("Search tracks...", text: $searchText)
                                 .textFieldStyle(.plain)
                                 .font(.caption)
-                                .foregroundColor(MixorTheme.textPrimary)
+                                .foregroundColor(Music2001Theme.textPrimary)
                             if !searchText.isEmpty {
                                 Button {
                                     searchText = ""
                                 } label: {
                                     Image(systemName: "xmark.circle.fill")
                                         .font(.caption2)
-                                        .foregroundColor(MixorTheme.textTertiary)
+                                        .foregroundColor(Music2001Theme.textTertiary)
                                 }
                                 .buttonStyle(.plain)
                             }
                         }
                         .padding(8)
-                        .background(MixorTheme.elevatedBackground)
+                        .background(Music2001Theme.elevatedBackground)
                         .cornerRadius(6)
 
                         Spacer()
                     }
                     .padding(12)
                     .frame(width: 180)
-                    .background(MixorTheme.cardBackground)
+                    .background(Music2001Theme.cardBackground)
                     .transition(.move(edge: .trailing))
                 } else if showThemeEditor {
                     // Theme editor panel
@@ -943,7 +943,7 @@ struct MiniToolbar: View {
                     ToolbarIconButton(
                         icon: "magnifyingglass",
                         isActive: showSearch,
-                        activeColor: MixorTheme.accent
+                        activeColor: Music2001Theme.accent
                     ) {
                         withAnimation(.easeInOut(duration: 0.15)) {
                             showSearch.toggle()
@@ -958,7 +958,7 @@ struct MiniToolbar: View {
                     ToolbarIconButton(
                         icon: "paintpalette",
                         isActive: showThemeEditor,
-                        activeColor: MixorTheme.primary
+                        activeColor: Music2001Theme.primary
                     ) {
                         withAnimation(.easeInOut(duration: 0.15)) {
                             showThemeEditor.toggle()
@@ -973,7 +973,7 @@ struct MiniToolbar: View {
                     ToolbarIconButton(
                         icon: "arrow.down.circle",
                         isActive: showDownloadSidebar,
-                        activeColor: MixorTheme.primary
+                        activeColor: Music2001Theme.primary
                     ) {
                         withAnimation(.easeInOut(duration: 0.15)) {
                             showDownloadSidebar.toggle()
@@ -988,7 +988,7 @@ struct MiniToolbar: View {
                     ToolbarIconButton(
                         icon: "gearshape",
                         isActive: false,
-                        activeColor: MixorTheme.textSecondary
+                        activeColor: Music2001Theme.textSecondary
                     ) {
                         showingSettings = true
                     }
@@ -997,7 +997,7 @@ struct MiniToolbar: View {
                 }
                 .padding(.top, 8)
                 .frame(width: 40)
-                .background(MixorTheme.cardBackground)
+                .background(Music2001Theme.cardBackground)
         }
     }
 }
@@ -1013,7 +1013,7 @@ struct ToolbarIconButton: View {
         Button(action: action) {
             Image(systemName: icon)
                 .font(.system(size: 12))
-                .foregroundColor(isActive ? activeColor : MixorTheme.accent)
+                .foregroundColor(isActive ? activeColor : Music2001Theme.accent)
                 .frame(width: 28, height: 28)
                 .background(isActive ? activeColor.opacity(0.15) : Color.clear)
                 .cornerRadius(6)
@@ -1051,23 +1051,23 @@ struct TrackRow: View {
                             image.resizable().aspectRatio(contentMode: .fill)
                         } placeholder: {
                             RoundedRectangle(cornerRadius: 4)
-                                .fill(MixorTheme.cardBackground)
+                                .fill(Music2001Theme.cardBackground)
                                 .overlay(
                                     Image(systemName: "music.note")
                                         .font(.system(size: 10))
-                                        .foregroundColor(MixorTheme.textSecondary)
+                                        .foregroundColor(Music2001Theme.textSecondary)
                                 )
                         }
                         .frame(width: 32, height: 32)
                         .cornerRadius(4)
                     } else {
                         RoundedRectangle(cornerRadius: 4)
-                            .fill(MixorTheme.cardBackground)
+                            .fill(Music2001Theme.cardBackground)
                             .frame(width: 32, height: 32)
                             .overlay(
                                 Image(systemName: "music.note")
                                     .font(.system(size: 10))
-                                    .foregroundColor(MixorTheme.textSecondary)
+                                    .foregroundColor(Music2001Theme.textSecondary)
                             )
                     }
 
@@ -1079,7 +1079,7 @@ struct TrackRow: View {
                             .overlay(
                                 Image(systemName: isPlaying ? "speaker.wave.2.fill" : "play.fill")
                                     .font(.system(size: 10))
-                                    .foregroundColor(MixorTheme.primary)
+                                    .foregroundColor(Music2001Theme.primary)
                             )
                     }
                 }
@@ -1088,34 +1088,34 @@ struct TrackRow: View {
                 // Title
                 Text(track.title)
                     .font(.subheadline)
-                    .foregroundColor(isPlaying ? MixorTheme.primary : MixorTheme.textPrimary)
+                    .foregroundColor(isPlaying ? Music2001Theme.primary : Music2001Theme.textPrimary)
                     .lineLimit(1)
                     .frame(maxWidth: .infinity, alignment: .leading)
 
                 // Artist
                 Text(track.artist)
                     .font(.caption)
-                    .foregroundColor(MixorTheme.textSecondary)
+                    .foregroundColor(Music2001Theme.textSecondary)
                     .lineLimit(1)
                     .frame(maxWidth: .infinity, alignment: .leading)
 
                 // Album
                 Text(track.album)
                     .font(.caption)
-                    .foregroundColor(MixorTheme.textSecondary)
+                    .foregroundColor(Music2001Theme.textSecondary)
                     .lineLimit(1)
                     .frame(maxWidth: .infinity, alignment: .leading)
 
                 // Year
                 Text(track.releaseYear.map { String($0) } ?? "-")
                     .font(.caption.monospacedDigit())
-                    .foregroundColor(MixorTheme.textSecondary)
+                    .foregroundColor(Music2001Theme.textSecondary)
                     .frame(width: 50, alignment: .center)
 
                 // Duration
                 Text(track.formattedDuration)
                     .font(.caption.monospacedDigit())
-                    .foregroundColor(MixorTheme.textSecondary)
+                    .foregroundColor(Music2001Theme.textSecondary)
                     .frame(width: 60, alignment: .trailing)
                     .padding(.trailing, 12)
             }
@@ -1130,7 +1130,7 @@ struct TrackRow: View {
             } label: {
                 Image(systemName: "ellipsis")
                     .font(.system(size: 11))
-                    .foregroundColor(MixorTheme.textSecondary)
+                    .foregroundColor(Music2001Theme.textSecondary)
                     .frame(width: 28, height: 28)
                     .contentShape(Rectangle())
             }
@@ -1166,7 +1166,7 @@ struct TrackRow: View {
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 8)
-        .background(isHovered ? MixorTheme.cardBackground.opacity(0.5) : Color.clear)
+        .background(isHovered ? Music2001Theme.cardBackground.opacity(0.5) : Color.clear)
         .cornerRadius(6)
         .onHover { hovering in
             isHovered = hovering
@@ -1247,7 +1247,7 @@ struct TrackContextMenu: View {
         }
         .padding(.vertical, 6)
         .frame(minWidth: 160)
-        .background(MixorTheme.cardBackground)
+        .background(Music2001Theme.cardBackground)
     }
 }
 
@@ -1269,19 +1269,19 @@ struct NestedSubmenuButton<Content: View>: View {
             HStack(spacing: 8) {
                 Image(systemName: icon)
                     .font(.caption)
-                    .foregroundColor(MixorTheme.textPrimary)
+                    .foregroundColor(Music2001Theme.textPrimary)
                     .frame(width: 16)
                 Text(title)
                     .font(.caption)
-                    .foregroundColor(MixorTheme.textPrimary)
+                    .foregroundColor(Music2001Theme.textPrimary)
                 Spacer()
                 Image(systemName: "chevron.right")
                     .font(.caption2)
-                    .foregroundColor(MixorTheme.textSecondary)
+                    .foregroundColor(Music2001Theme.textSecondary)
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
-            .background(isHovered ? MixorTheme.elevatedBackground : Color.clear)
+            .background(isHovered ? Music2001Theme.elevatedBackground : Color.clear)
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
@@ -1311,7 +1311,7 @@ struct AlbumSubmenuContent: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("New Album")
                         .font(.caption)
-                        .foregroundColor(MixorTheme.textSecondary)
+                        .foregroundColor(Music2001Theme.textSecondary)
                         .padding(.horizontal, 12)
                         .padding(.top, 8)
 
@@ -1319,9 +1319,9 @@ struct AlbumSubmenuContent: View {
                         TextField("Album name", text: $newName)
                             .textFieldStyle(.plain)
                             .font(.caption)
-                            .foregroundColor(MixorTheme.textPrimary)
+                            .foregroundColor(Music2001Theme.textPrimary)
                             .padding(6)
-                            .background(MixorTheme.elevatedBackground)
+                            .background(Music2001Theme.elevatedBackground)
                             .cornerRadius(4)
                             .onSubmit {
                                 if !newName.isEmpty {
@@ -1334,7 +1334,7 @@ struct AlbumSubmenuContent: View {
                             }
                         } label: {
                             Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(MixorTheme.primary)
+                                .foregroundColor(Music2001Theme.primary)
                         }
                         .buttonStyle(.plain)
                     }
@@ -1367,7 +1367,7 @@ struct AlbumSubmenuContent: View {
         }
         .padding(.vertical, 6)
         .frame(minWidth: 140)
-        .background(MixorTheme.cardBackground)
+        .background(Music2001Theme.cardBackground)
     }
 }
 
@@ -1388,7 +1388,7 @@ struct ArtistSubmenuContent: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("New Artist")
                         .font(.caption)
-                        .foregroundColor(MixorTheme.textSecondary)
+                        .foregroundColor(Music2001Theme.textSecondary)
                         .padding(.horizontal, 12)
                         .padding(.top, 8)
 
@@ -1396,9 +1396,9 @@ struct ArtistSubmenuContent: View {
                         TextField("Artist name", text: $newName)
                             .textFieldStyle(.plain)
                             .font(.caption)
-                            .foregroundColor(MixorTheme.textPrimary)
+                            .foregroundColor(Music2001Theme.textPrimary)
                             .padding(6)
-                            .background(MixorTheme.elevatedBackground)
+                            .background(Music2001Theme.elevatedBackground)
                             .cornerRadius(4)
                             .onSubmit {
                                 if !newName.isEmpty {
@@ -1411,7 +1411,7 @@ struct ArtistSubmenuContent: View {
                             }
                         } label: {
                             Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(MixorTheme.primary)
+                                .foregroundColor(Music2001Theme.primary)
                         }
                         .buttonStyle(.plain)
                     }
@@ -1444,7 +1444,7 @@ struct ArtistSubmenuContent: View {
         }
         .padding(.vertical, 6)
         .frame(minWidth: 140)
-        .background(MixorTheme.cardBackground)
+        .background(Music2001Theme.cardBackground)
     }
 }
 
@@ -1466,7 +1466,7 @@ struct PlaylistSubmenuContent: View {
         }
         .padding(.vertical, 6)
         .frame(minWidth: 140)
-        .background(MixorTheme.cardBackground)
+        .background(Music2001Theme.cardBackground)
     }
 }
 
@@ -1485,7 +1485,7 @@ struct ThemedMenuButton: View {
     private var foregroundColor: Color {
         if isDestructive { return .red }
         if let color = color { return color }
-        return MixorTheme.textPrimary
+        return Music2001Theme.textPrimary
     }
 
     var body: some View {
@@ -1502,7 +1502,7 @@ struct ThemedMenuButton: View {
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
-            .background(isHovered ? MixorTheme.elevatedBackground : Color.clear)
+            .background(isHovered ? Music2001Theme.elevatedBackground : Color.clear)
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
@@ -1517,7 +1517,7 @@ struct ThemedMenuDivider: View {
 
     var body: some View {
         Rectangle()
-            .fill(MixorTheme.elevatedBackground)
+            .fill(Music2001Theme.elevatedBackground)
             .frame(height: 1)
             .padding(.horizontal, 8)
             .padding(.vertical, 4)
@@ -1554,11 +1554,11 @@ struct TrackInfoDialog: View {
             HStack {
                 Text("Track Info")
                     .font(.headline)
-                    .foregroundColor(MixorTheme.textPrimary)
+                    .foregroundColor(Music2001Theme.textPrimary)
                 Spacer()
                 Button(action: onCancel) {
                     Image(systemName: "xmark")
-                        .foregroundColor(MixorTheme.textTertiary)
+                        .foregroundColor(Music2001Theme.textTertiary)
                 }
                 .buttonStyle(.plain)
             }
@@ -1571,23 +1571,23 @@ struct TrackInfoDialog: View {
                             image.resizable().aspectRatio(contentMode: .fill)
                         } placeholder: {
                             RoundedRectangle(cornerRadius: 8)
-                                .fill(MixorTheme.elevatedBackground)
+                                .fill(Music2001Theme.elevatedBackground)
                                 .overlay(
                                     Image(systemName: "music.note")
                                         .font(.title)
-                                        .foregroundColor(MixorTheme.textTertiary)
+                                        .foregroundColor(Music2001Theme.textTertiary)
                                 )
                         }
                         .frame(width: 100, height: 100)
                         .cornerRadius(8)
                     } else {
                         RoundedRectangle(cornerRadius: 8)
-                            .fill(MixorTheme.elevatedBackground)
+                            .fill(Music2001Theme.elevatedBackground)
                             .frame(width: 100, height: 100)
                             .overlay(
                                 Image(systemName: "music.note")
                                     .font(.title)
-                                    .foregroundColor(MixorTheme.textTertiary)
+                                    .foregroundColor(Music2001Theme.textTertiary)
                             )
                     }
                 }
@@ -1597,39 +1597,39 @@ struct TrackInfoDialog: View {
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Title")
                             .font(.caption2)
-                            .foregroundColor(MixorTheme.textTertiary)
+                            .foregroundColor(Music2001Theme.textTertiary)
                         TextField("", text: $editedTitle)
                             .textFieldStyle(.plain)
                             .font(.callout)
-                            .foregroundColor(MixorTheme.textPrimary)
+                            .foregroundColor(Music2001Theme.textPrimary)
                             .padding(8)
-                            .background(MixorTheme.elevatedBackground)
+                            .background(Music2001Theme.elevatedBackground)
                             .cornerRadius(6)
                             .focused($focusedField, equals: .title)
                     }
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Artist")
                             .font(.caption2)
-                            .foregroundColor(MixorTheme.textTertiary)
+                            .foregroundColor(Music2001Theme.textTertiary)
                         TextField("", text: $editedArtist)
                             .textFieldStyle(.plain)
                             .font(.callout)
-                            .foregroundColor(MixorTheme.textPrimary)
+                            .foregroundColor(Music2001Theme.textPrimary)
                             .padding(8)
-                            .background(MixorTheme.elevatedBackground)
+                            .background(Music2001Theme.elevatedBackground)
                             .cornerRadius(6)
                             .focused($focusedField, equals: .artist)
                     }
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Album")
                             .font(.caption2)
-                            .foregroundColor(MixorTheme.textTertiary)
+                            .foregroundColor(Music2001Theme.textTertiary)
                         TextField("", text: $editedAlbum)
                             .textFieldStyle(.plain)
                             .font(.callout)
-                            .foregroundColor(MixorTheme.textPrimary)
+                            .foregroundColor(Music2001Theme.textPrimary)
                             .padding(8)
-                            .background(MixorTheme.elevatedBackground)
+                            .background(Music2001Theme.elevatedBackground)
                             .cornerRadius(6)
                             .focused($focusedField, equals: .album)
                     }
@@ -1637,26 +1637,26 @@ struct TrackInfoDialog: View {
                         VStack(alignment: .leading, spacing: 4) {
                             Text("Genre")
                                 .font(.caption2)
-                                .foregroundColor(MixorTheme.textTertiary)
+                                .foregroundColor(Music2001Theme.textTertiary)
                             TextField("", text: $editedGenre)
                                 .textFieldStyle(.plain)
                                 .font(.callout)
-                                .foregroundColor(MixorTheme.textPrimary)
+                                .foregroundColor(Music2001Theme.textPrimary)
                                 .padding(8)
-                                .background(MixorTheme.elevatedBackground)
+                                .background(Music2001Theme.elevatedBackground)
                                 .cornerRadius(6)
                                 .focused($focusedField, equals: .genre)
                         }
                         VStack(alignment: .leading, spacing: 4) {
                             Text("Year")
                                 .font(.caption2)
-                                .foregroundColor(MixorTheme.textTertiary)
+                                .foregroundColor(Music2001Theme.textTertiary)
                             TextField("", text: $editedYear)
                                 .textFieldStyle(.plain)
                                 .font(.callout)
-                                .foregroundColor(MixorTheme.textPrimary)
+                                .foregroundColor(Music2001Theme.textPrimary)
                                 .padding(8)
-                                .background(MixorTheme.elevatedBackground)
+                                .background(Music2001Theme.elevatedBackground)
                                 .cornerRadius(6)
                                 .focused($focusedField, equals: .year)
                         }
@@ -1681,7 +1681,7 @@ struct TrackInfoDialog: View {
                             Text("Lookup from iTunes")
                         }
                         .font(.caption)
-                        .foregroundColor(MixorTheme.primary)
+                        .foregroundColor(Music2001Theme.primary)
                     }
                     .buttonStyle(.plain)
                     .disabled(isLookingUp)
@@ -1701,7 +1701,7 @@ struct TrackInfoDialog: View {
                         } label: {
                             Text("Clear")
                                 .font(.caption2)
-                                .foregroundColor(MixorTheme.textTertiary)
+                                .foregroundColor(Music2001Theme.textTertiary)
                         }
                         .buttonStyle(.plain)
                     }
@@ -1725,13 +1725,13 @@ struct TrackInfoDialog: View {
                         }
                     }
                     .frame(maxHeight: 120)
-                    .background(MixorTheme.elevatedBackground)
+                    .background(Music2001Theme.elevatedBackground)
                     .cornerRadius(8)
                 }
             }
 
             Divider()
-                .background(MixorTheme.elevatedBackground)
+                .background(Music2001Theme.elevatedBackground)
 
             // Actions
             HStack {
@@ -1740,20 +1740,20 @@ struct TrackInfoDialog: View {
                     onCancel()
                 }
                 .buttonStyle(.plain)
-                .foregroundColor(MixorTheme.textSecondary)
+                .foregroundColor(Music2001Theme.textSecondary)
                 .padding(.trailing, 8)
 
                 Button("Save") {
                     saveChanges()
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(MixorTheme.primary)
+                .tint(Music2001Theme.primary)
             }
         }
         .padding(28)
         .frame(width: 480, height: showResultsPicker ? 520 : 400)
         .animation(.easeInOut(duration: 0.2), value: showResultsPicker)
-        .background(MixorTheme.cardBackground)
+        .background(Music2001Theme.cardBackground)
         .onAppear {
             editedTitle = track.title
             editedArtist = track.artist
@@ -1900,18 +1900,18 @@ struct iTunesResultRow: View {
                         image.resizable().aspectRatio(contentMode: .fill)
                     } placeholder: {
                         RoundedRectangle(cornerRadius: 4)
-                            .fill(MixorTheme.primary.opacity(0.2))
+                            .fill(Music2001Theme.primary.opacity(0.2))
                     }
                     .frame(width: 36, height: 36)
                     .cornerRadius(4)
                 } else {
                     RoundedRectangle(cornerRadius: 4)
-                        .fill(MixorTheme.primary.opacity(0.2))
+                        .fill(Music2001Theme.primary.opacity(0.2))
                         .frame(width: 36, height: 36)
                         .overlay(
                             Image(systemName: "music.note")
                                 .font(.caption2)
-                                .foregroundColor(MixorTheme.primary)
+                                .foregroundColor(Music2001Theme.primary)
                         )
                 }
 
@@ -1919,11 +1919,11 @@ struct iTunesResultRow: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(result.trackName)
                         .font(.caption)
-                        .foregroundColor(MixorTheme.textPrimary)
+                        .foregroundColor(Music2001Theme.textPrimary)
                         .lineLimit(1)
                     Text("\(result.artistName) • \(result.collectionName) • \(result.releaseYear)")
                         .font(.caption2)
-                        .foregroundColor(MixorTheme.textSecondary)
+                        .foregroundColor(Music2001Theme.textSecondary)
                         .lineLimit(1)
                 }
 
@@ -1932,12 +1932,12 @@ struct iTunesResultRow: View {
                 if isHovered {
                     Image(systemName: "arrow.up.left")
                         .font(.caption2)
-                        .foregroundColor(MixorTheme.primary)
+                        .foregroundColor(Music2001Theme.primary)
                 }
             }
             .padding(.horizontal, 8)
             .padding(.vertical, 6)
-            .background(isHovered ? MixorTheme.primary.opacity(0.15) : Color.clear)
+            .background(isHovered ? Music2001Theme.primary.opacity(0.15) : Color.clear)
             .cornerRadius(6)
         }
         .buttonStyle(.plain)
@@ -1958,14 +1958,14 @@ struct TrackInfoField: View {
         VStack(alignment: .leading, spacing: 4) {
             Text(label)
                 .font(.caption2)
-                .foregroundColor(MixorTheme.textTertiary)
+                .foregroundColor(Music2001Theme.textTertiary)
 
             TextField("", text: $text)
                 .textFieldStyle(.plain)
                 .font(.callout)
-                .foregroundColor(MixorTheme.textPrimary)
+                .foregroundColor(Music2001Theme.textPrimary)
                 .padding(8)
-                .background(MixorTheme.elevatedBackground)
+                .background(Music2001Theme.elevatedBackground)
                 .cornerRadius(6)
         }
     }
@@ -2005,32 +2005,32 @@ struct ArtistRow: View {
             HStack(spacing: 12) {
                 ZStack {
                     Circle()
-                        .fill(MixorTheme.elevatedBackground)
+                        .fill(Music2001Theme.elevatedBackground)
                         .frame(width: 44, height: 44)
                     Image(systemName: "person.fill")
                         .font(.title3)
-                        .foregroundColor(MixorTheme.textSecondary)
+                        .foregroundColor(Music2001Theme.textSecondary)
                 }
 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(artist)
                         .font(.subheadline)
-                        .foregroundColor(MixorTheme.textPrimary)
+                        .foregroundColor(Music2001Theme.textPrimary)
                     Text("\(trackCount) \(trackCount == 1 ? "song" : "songs")")
                         .font(.caption)
-                        .foregroundColor(MixorTheme.textTertiary)
+                        .foregroundColor(Music2001Theme.textTertiary)
                 }
 
                 Spacer()
 
                 Image(systemName: "chevron.right")
                     .font(.caption)
-                    .foregroundColor(MixorTheme.textTertiary)
+                    .foregroundColor(Music2001Theme.textTertiary)
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
             .contentShape(Rectangle())
-            .background(isHovered ? MixorTheme.elevatedBackground.opacity(0.5) : Color.clear)
+            .background(isHovered ? Music2001Theme.elevatedBackground.opacity(0.5) : Color.clear)
         }
         .buttonStyle(.plain)
         .onHover { hovering in
@@ -2077,39 +2077,39 @@ struct AlbumRow: View {
                     AsyncImage(url: artworkURL) { image in
                         image.resizable().aspectRatio(contentMode: .fill)
                     } placeholder: {
-                        Rectangle().fill(MixorTheme.elevatedBackground)
+                        Rectangle().fill(Music2001Theme.elevatedBackground)
                     }
                     .frame(width: 44, height: 44)
                     .cornerRadius(4)
                 } else {
                     RoundedRectangle(cornerRadius: 4)
-                        .fill(MixorTheme.elevatedBackground)
+                        .fill(Music2001Theme.elevatedBackground)
                         .frame(width: 44, height: 44)
                         .overlay(
                             Image(systemName: "square.stack")
                                 .font(.title3)
-                                .foregroundColor(MixorTheme.textSecondary)
+                                .foregroundColor(Music2001Theme.textSecondary)
                         )
                 }
 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(album)
                         .font(.subheadline)
-                        .foregroundColor(MixorTheme.textPrimary)
+                        .foregroundColor(Music2001Theme.textPrimary)
                     Text("\(trackCount) \(trackCount == 1 ? "song" : "songs")")
                         .font(.caption)
-                        .foregroundColor(MixorTheme.textTertiary)
+                        .foregroundColor(Music2001Theme.textTertiary)
                 }
 
                 Spacer()
 
                 Image(systemName: "chevron.right")
                     .font(.caption)
-                    .foregroundColor(MixorTheme.textTertiary)
+                    .foregroundColor(Music2001Theme.textTertiary)
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
-            .background(isHovered ? MixorTheme.elevatedBackground.opacity(0.5) : Color.clear)
+            .background(isHovered ? Music2001Theme.elevatedBackground.opacity(0.5) : Color.clear)
         }
         .buttonStyle(.plain)
         .onHover { hovering in
@@ -2131,7 +2131,7 @@ struct DownloadSidebarContent: View {
             HStack {
                 Text("Download")
                     .font(.caption.weight(.medium))
-                    .foregroundColor(MixorTheme.textPrimary)
+                    .foregroundColor(Music2001Theme.textPrimary)
                 Spacer()
                 Button {
                     withAnimation(.easeInOut(duration: 0.15)) {
@@ -2140,7 +2140,7 @@ struct DownloadSidebarContent: View {
                 } label: {
                     Image(systemName: "xmark")
                         .font(.caption2)
-                        .foregroundColor(MixorTheme.textTertiary)
+                        .foregroundColor(Music2001Theme.textTertiary)
                 }
                 .buttonStyle(.plain)
             }
@@ -2151,19 +2151,19 @@ struct DownloadSidebarContent: View {
                     if viewModel.urlInput.isEmpty {
                         Text("e.g. youtube.com/watch?v=...")
                             .font(.caption2)
-                            .foregroundColor(MixorTheme.textTertiary)
+                            .foregroundColor(Music2001Theme.textTertiary)
                             .padding(.leading, 8)
                     }
                     TextField("", text: $viewModel.urlInput)
                         .textFieldStyle(.plain)
                         .font(.caption2)
-                        .foregroundColor(MixorTheme.textPrimary)
+                        .foregroundColor(Music2001Theme.textPrimary)
                         .padding(8)
                         .onSubmit {
                             viewModel.downloadTrack()
                         }
                 }
-                .background(MixorTheme.elevatedBackground)
+                .background(Music2001Theme.elevatedBackground)
                 .cornerRadius(6)
 
                 Button {
@@ -2177,7 +2177,7 @@ struct DownloadSidebarContent: View {
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 6)
-                    .background(viewModel.urlInput.isEmpty ? MixorTheme.textTertiary : MixorTheme.primary)
+                    .background(viewModel.urlInput.isEmpty ? Music2001Theme.textTertiary : Music2001Theme.primary)
                     .cornerRadius(6)
                     .contentShape(Rectangle())
                 }
@@ -2186,7 +2186,7 @@ struct DownloadSidebarContent: View {
 
                 Text("Tip: Use - Topic channels")
                     .font(.system(size: 9))
-                    .foregroundColor(MixorTheme.textTertiary)
+                    .foregroundColor(Music2001Theme.textTertiary)
             }
 
             // Progress
@@ -2196,14 +2196,14 @@ struct DownloadSidebarContent: View {
                         .scaleEffect(0.6)
                     Text(viewModel.downloadProgress)
                         .font(.caption2)
-                        .foregroundColor(MixorTheme.textSecondary)
+                        .foregroundColor(Music2001Theme.textSecondary)
                 }
             }
 
             Spacer()
         }
         .padding(12)
-        .background(MixorTheme.cardBackground)
+        .background(Music2001Theme.cardBackground)
     }
 }
 
@@ -2219,9 +2219,9 @@ struct NowPlayingBar: View {
             GeometryReader { geo in
                 ZStack(alignment: .leading) {
                     Rectangle()
-                        .fill(MixorTheme.elevatedBackground)
+                        .fill(Music2001Theme.elevatedBackground)
                     Rectangle()
-                        .fill(MixorTheme.primary)
+                        .fill(Music2001Theme.primary)
                         .frame(width: viewModel.duration > 0 ? geo.size.width * (viewModel.currentTime / viewModel.duration) : 0)
                 }
                 .gesture(
@@ -2242,24 +2242,24 @@ struct NowPlayingBar: View {
                         AsyncImage(url: artworkURL) { image in
                             image.resizable().aspectRatio(contentMode: .fill)
                         } placeholder: {
-                            Rectangle().fill(MixorTheme.elevatedBackground)
+                            Rectangle().fill(Music2001Theme.elevatedBackground)
                         }
                         .frame(width: 44, height: 44)
                         .cornerRadius(4)
                     } else {
                         RoundedRectangle(cornerRadius: 4)
-                            .fill(MixorTheme.elevatedBackground)
+                            .fill(Music2001Theme.elevatedBackground)
                             .frame(width: 44, height: 44)
                     }
 
                     VStack(alignment: .leading, spacing: 2) {
                         Text(viewModel.currentTrack?.title ?? "No track selected")
                             .font(.subheadline)
-                            .foregroundColor(MixorTheme.textPrimary)
+                            .foregroundColor(Music2001Theme.textPrimary)
                             .lineLimit(1)
                         Text(viewModel.currentTrack?.artist ?? "")
                             .font(.caption)
-                            .foregroundColor(MixorTheme.textSecondary)
+                            .foregroundColor(Music2001Theme.textSecondary)
                             .lineLimit(1)
                     }
 
@@ -2274,9 +2274,9 @@ struct NowPlayingBar: View {
                         } label: {
                             Image(systemName: "text.badge.plus")
                                 .font(.caption)
-                                .foregroundColor(MixorTheme.textSecondary)
+                                .foregroundColor(Music2001Theme.textSecondary)
                                 .padding(6)
-                                .background(MixorTheme.elevatedBackground)
+                                .background(Music2001Theme.elevatedBackground)
                                 .cornerRadius(4)
                         }
                         .menuStyle(.borderlessButton)
@@ -2295,7 +2295,7 @@ struct NowPlayingBar: View {
                     } label: {
                         Image(systemName: "shuffle")
                             .font(.caption)
-                            .foregroundColor(viewModel.isShuffled ? MixorTheme.primary : MixorTheme.textSecondary)
+                            .foregroundColor(viewModel.isShuffled ? Music2001Theme.primary : Music2001Theme.textSecondary)
                             .frame(width: 28, height: 28)
                             .contentShape(Rectangle())
                     }
@@ -2307,7 +2307,7 @@ struct NowPlayingBar: View {
                     } label: {
                         Image(systemName: "backward.fill")
                             .font(.title3)
-                            .foregroundColor(MixorTheme.textPrimary)
+                            .foregroundColor(Music2001Theme.textPrimary)
                             .frame(width: 32, height: 32)
                             .contentShape(Rectangle())
                     }
@@ -2319,7 +2319,7 @@ struct NowPlayingBar: View {
                     } label: {
                         Image(systemName: viewModel.isPlaying ? "pause.circle.fill" : "play.circle.fill")
                             .font(.system(size: 36))
-                            .foregroundColor(MixorTheme.primary)
+                            .foregroundColor(Music2001Theme.primary)
                             .frame(width: 40, height: 40)
                             .contentShape(Rectangle())
                     }
@@ -2331,7 +2331,7 @@ struct NowPlayingBar: View {
                     } label: {
                         Image(systemName: "forward.fill")
                             .font(.title3)
-                            .foregroundColor(MixorTheme.textPrimary)
+                            .foregroundColor(Music2001Theme.textPrimary)
                             .frame(width: 32, height: 32)
                             .contentShape(Rectangle())
                     }
@@ -2343,7 +2343,7 @@ struct NowPlayingBar: View {
                     } label: {
                         Image(systemName: viewModel.repeatMode == .one ? "repeat.1" : "repeat")
                             .font(.caption)
-                            .foregroundColor(viewModel.repeatMode != .off ? MixorTheme.primary : MixorTheme.textSecondary)
+                            .foregroundColor(viewModel.repeatMode != .off ? Music2001Theme.primary : Music2001Theme.textSecondary)
                             .frame(width: 28, height: 28)
                             .contentShape(Rectangle())
                     }
@@ -2356,16 +2356,16 @@ struct NowPlayingBar: View {
                 HStack(spacing: 16) {
                     Text("\(viewModel.formatTime(viewModel.currentTime)) / \(viewModel.formatTime(viewModel.duration))")
                         .font(.caption.monospacedDigit())
-                        .foregroundColor(MixorTheme.textTertiary)
+                        .foregroundColor(Music2001Theme.textTertiary)
 
                     HStack(spacing: 6) {
                         Image(systemName: viewModel.volume == 0 ? "speaker.slash.fill" : "speaker.wave.2.fill")
                             .font(.caption)
-                            .foregroundColor(MixorTheme.textSecondary)
+                            .foregroundColor(Music2001Theme.textSecondary)
 
                         Slider(value: $viewModel.volume, in: 0...1)
                             .frame(width: 80)
-                            .tint(MixorTheme.primary)
+                            .tint(Music2001Theme.primary)
                             .onChange(of: viewModel.volume) { newValue in
                                 viewModel.setVolume(newValue)
                             }
@@ -2376,7 +2376,7 @@ struct NowPlayingBar: View {
             .padding(.horizontal, 16)
             .padding(.vertical, 10)
         }
-        .background(MixorTheme.cardBackground)
+        .background(Music2001Theme.cardBackground)
     }
 }
 

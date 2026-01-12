@@ -1,6 +1,6 @@
 //
 //  TipManager.swift
-//  MixoriOS
+//  Music2001iOS
 //
 
 import StoreKit

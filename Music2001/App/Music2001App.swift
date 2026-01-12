@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct MixorApp: App {
+struct Music2001App: App {
     @StateObject private var appState = AppState()
 
     var body: some Scene {

@@ -1,6 +1,6 @@
 //
-//  MixorIOSApp.swift
-//  MixorIOS
+//  Music2001iOSApp.swift
+//  Music2001iOS
 //
 //  Created by Christian Okeke on 1/5/26.
 //
@@ -14,9 +14,9 @@ private let _audioSessionSetup: Void = {
         let session = AVAudioSession.sharedInstance()
         try session.setCategory(.playback, mode: .default, options: [])
         try session.setActive(true)
-        print("[MyMusic] Static init: Audio session configured for background playback")
+        print("[Music2001] Static init: Audio session configured for background playback")
     } catch {
-        print("[MyMusic] Static init ERROR: \(error)")
+        print("[Music2001] Static init ERROR: \(error)")
     }
 }()
 
@@ -34,7 +34,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 }
 
 @main
-struct MixorIOSApp: App {
+struct Music2001iOSApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @State private var state = iPodState()
 

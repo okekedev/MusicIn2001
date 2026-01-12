@@ -8,7 +8,7 @@ struct ContentView: View {
     var body: some View {
         PlayerView(showingSettings: $showingSettings)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(MixorTheme.background)
+            .background(Music2001Theme.background)
             .sheet(isPresented: $showingSettings) {
                 SettingsView()
             }
@@ -24,17 +24,17 @@ struct SettingsView: View {
     @State private var syncResult: String?
 
     var body: some View {
-        VStack(spacing: MixorTheme.largeSpacing) {
+        VStack(spacing: Music2001Theme.largeSpacing) {
             HStack {
                 Text("Settings")
                     .font(.headline)
-                    .foregroundColor(MixorTheme.textPrimary)
+                    .foregroundColor(Music2001Theme.textPrimary)
                 Spacer()
                 Button {
                     dismiss()
                 } label: {
                     Image(systemName: "xmark")
-                        .foregroundColor(MixorTheme.textTertiary)
+                        .foregroundColor(Music2001Theme.textTertiary)
                 }
                 .buttonStyle(.plain)
             }
@@ -43,10 +43,10 @@ struct SettingsView: View {
             VStack(alignment: .leading, spacing: 8) {
                 HStack(spacing: 8) {
                     Image(systemName: fileManager.iCloudAvailable ? "checkmark.icloud.fill" : "xmark.icloud")
-                        .foregroundColor(fileManager.iCloudAvailable ? .green : MixorTheme.textTertiary)
+                        .foregroundColor(fileManager.iCloudAvailable ? .green : Music2001Theme.textTertiary)
                     Text(fileManager.iCloudAvailable ? "iCloud Drive Connected" : "iCloud Drive Unavailable")
                         .font(.subheadline)
-                        .foregroundColor(MixorTheme.textPrimary)
+                        .foregroundColor(Music2001Theme.textPrimary)
 
                     Spacer()
 
@@ -60,7 +60,7 @@ struct SettingsView: View {
                             } else {
                                 Text("Sync to iCloud")
                                     .font(.caption)
-                                    .foregroundColor(MixorTheme.primary)
+                                    .foregroundColor(Music2001Theme.primary)
                             }
                         }
                         .disabled(isSyncing)
@@ -80,10 +80,10 @@ struct SettingsView: View {
                     HStack(spacing: 6) {
                         Image(systemName: "info.circle")
                             .font(.caption2)
-                            .foregroundColor(MixorTheme.textTertiary)
+                            .foregroundColor(Music2001Theme.textTertiary)
                         Text("Music syncs automatically via iCloud Drive")
                             .font(.caption2)
-                            .foregroundColor(MixorTheme.textTertiary)
+                            .foregroundColor(Music2001Theme.textTertiary)
                     }
                 } else {
                     HStack(spacing: 6) {
@@ -97,19 +97,19 @@ struct SettingsView: View {
                 }
             }
             .padding(12)
-            .background(MixorTheme.elevatedBackground)
+            .background(Music2001Theme.elevatedBackground)
             .cornerRadius(8)
 
             // Music Folder
-            VStack(alignment: .leading, spacing: MixorTheme.spacing) {
+            VStack(alignment: .leading, spacing: Music2001Theme.spacing) {
                 Text("Music Folder")
                     .font(.subheadline)
-                    .foregroundColor(MixorTheme.textSecondary)
+                    .foregroundColor(Music2001Theme.textSecondary)
 
                 HStack {
                     Text(fileManager.musicDirectory.path)
                         .font(.caption)
-                        .foregroundColor(MixorTheme.textPrimary)
+                        .foregroundColor(Music2001Theme.textPrimary)
                         .lineLimit(1)
                         .truncationMode(.middle)
 
@@ -119,27 +119,27 @@ struct SettingsView: View {
                         fileManager.openInFinder(directory: fileManager.musicDirectory)
                     }
                     .font(.caption)
-                    .foregroundColor(MixorTheme.primary)
+                    .foregroundColor(Music2001Theme.primary)
                 }
                 .padding(12)
-                .background(MixorTheme.elevatedBackground)
+                .background(Music2001Theme.elevatedBackground)
                 .cornerRadius(8)
 
                 HStack(spacing: 6) {
                     Image(systemName: "info.circle")
                         .font(.caption2)
-                        .foregroundColor(MixorTheme.textTertiary)
+                        .foregroundColor(Music2001Theme.textTertiary)
                     Text("Move music files into this folder to make them available in the app")
                         .font(.caption2)
-                        .foregroundColor(MixorTheme.textTertiary)
+                        .foregroundColor(Music2001Theme.textTertiary)
                 }
             }
 
             Spacer()
         }
-        .padding(MixorTheme.largeSpacing)
+        .padding(Music2001Theme.largeSpacing)
         .frame(width: 400, height: 320)
-        .background(MixorTheme.cardBackground)
+        .background(Music2001Theme.cardBackground)
     }
 
     private func syncLocalToiCloud() {

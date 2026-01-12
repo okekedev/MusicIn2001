@@ -2,9 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Mixor.xcodeproj">
+      location = "group:Music2001.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:MixorCore">
+      location = "group:Music2001Core">
    </FileRef>
 </Workspace>
