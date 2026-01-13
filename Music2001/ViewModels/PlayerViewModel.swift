@@ -3,6 +3,23 @@ import AVFoundation
 import Combine
 import CryptoKit
 
+// MARK: - Build Configuration
+// Set to false for App Store builds (sandboxed, no Process execution allowed)
+// Set to true for direct download builds (non-sandboxed)
+#if DEBUG
+let isDownloadEnabled = true  // Enable in debug for testing
+#else
+// For release: check if running with sandbox
+// The App Store version will have sandbox, direct download won't
+let isDownloadEnabled = !isSandboxed()
+#endif
+
+/// Check if app is running in sandbox (App Store version)
+private func isSandboxed() -> Bool {
+    let environment = ProcessInfo.processInfo.environment
+    return environment["APP_SANDBOX_CONTAINER_ID"] != nil
+}
+
 /// Generate a stable UUID from a string (used for consistent track IDs across devices)
 func stableUUID(from string: String) -> UUID {
     let hash = SHA256.hash(data: Data(string.utf8))
@@ -895,8 +912,20 @@ class PlayerViewModel: ObservableObject {
 
     // MARK: - Download
 
+    /// Check if YouTube downloading is available (disabled in App Store builds due to sandbox)
+    var canDownload: Bool {
+        return isDownloadEnabled
+    }
+
     func downloadTrack() {
         guard !urlInput.isEmpty else { return }
+
+        // Check if downloads are enabled (disabled in sandboxed App Store builds)
+        guard isDownloadEnabled else {
+            errorMessage = "YouTube downloads are not available in the App Store version. Please use the direct download version from our website."
+            showError = true
+            return
+        }
 
         isDownloading = true
         downloadProgress = "Starting download..."

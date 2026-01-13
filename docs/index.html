@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music 2001 - Download</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-card: #1a1a1a;
+            --accent: #6366f1;
+            --accent-hover: #818cf8;
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --gradient-start: #6366f1;
+            --gradient-end: #8b5cf6;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 160px 0 100px;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 14px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .badge span {
+            color: var(--accent);
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-secondary);
+            border-color: var(--text-muted);
+        }
+
+        .btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* App Preview */
+        .preview {
+            padding: 60px 0;
+        }
+
+        .screenshot-gallery {
+            text-align: center;
+        }
+
+        .screenshot-main {
+            margin-bottom: 24px;
+        }
+
+        .screenshot-main img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border);
+        }
+
+        .screenshot-thumbnails {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .thumb {
+            background: none;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 0;
+            cursor: pointer;
+            transition: all 0.2s;
+            overflow: hidden;
+        }
+
+        .thumb img {
+            width: 160px;
+            height: auto;
+            border-radius: 10px;
+            display: block;
+        }
+
+        .thumb:hover {
+            border-color: var(--text-muted);
+        }
+
+        .thumb.active {
+            border-color: var(--accent);
+        }
+
+        .screenshot-caption {
+            margin-top: 20px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* iOS Preview */
+        .ios-preview {
+            padding: 100px 0;
+            background: var(--bg-secondary);
+        }
+
+        .ios-screenshots {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .ios-row {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .ios-phone {
+            width: 220px;
+            height: auto;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s;
+        }
+
+        .ios-phone:hover {
+            transform: translateY(-8px);
+        }
+
+        @media (max-width: 768px) {
+            .ios-phone {
+                width: 160px;
+                border-radius: 16px;
+            }
+
+            .ios-row {
+                gap: 16px;
+            }
+        }
+
+        /* Features */
+        .features {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 0 auto 60px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Download Section */
+        .download-section {
+            padding: 100px 0;
+        }
+
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .download-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .download-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .download-card:first-child {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.1));
+            border-color: var(--accent);
+        }
+
+        .download-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--bg-secondary);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .download-icon svg {
+            width: 28px;
+            height: 28px;
+            color: var(--accent);
+        }
+
+        .download-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+
+        .download-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .download-card .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .download-note {
+            display: block;
+            margin-top: 12px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .preview-content {
+                flex-direction: column;
+            }
+
+            .preview-sidebar {
+                width: 100%;
+                flex-direction: row;
+                overflow-x: auto;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <img src="appicon.png" alt="Music 2001" class="logo-img">
+                Music 2001
+            </a>
+            <nav class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#download">Download</a>
+                <a href="https://github.com/okekedev/MusicIn2001">GitHub</a>
+                <a href="https://linkedin.com/in/christianokeke">LinkedIn</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="badge">Now available for <span>macOS & iOS</span></div>
+                <h1>Music 2001</h1>
+                <p class="hero-subtitle">
+                    A beautiful music player with iCloud sync, YouTube downloads, and an iPod Classic-inspired iOS experience.
+                </p>
+                <div class="cta-group">
+                    <a href="#download" class="btn btn-primary">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        Download for Mac
+                    </a>
+                    <a href="https://apps.apple.com" class="btn btn-secondary">
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"></path></svg>
+                        App Store
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="preview">
+            <div class="container">
+                <div class="screenshot-gallery">
+                    <div class="screenshot-main">
+                        <img src="macapp3.png" alt="Music 2001 - Dark Theme" id="mainScreenshot">
+                    </div>
+                    <div class="screenshot-thumbnails">
+                        <button class="thumb active" onclick="changeScreenshot('macapp3.png', this)">
+                            <img src="macapp3.png" alt="Dark Blue Theme">
+                        </button>
+                        <button class="thumb" onclick="changeScreenshot('macapp2.png', this)">
+                            <img src="macapp2.png" alt="Dark Green Theme">
+                        </button>
+                        <button class="thumb" onclick="changeScreenshot('macapp.png', this)">
+                            <img src="macapp.png" alt="Light Theme">
+                        </button>
+                        <button class="thumb" onclick="changeScreenshot('macapp4.png', this)">
+                            <img src="macapp4.png" alt="Coral Theme">
+                        </button>
+                    </div>
+                    <p class="screenshot-caption">Fully customizable themes to match your style</p>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            function changeScreenshot(src, btn) {
+                document.getElementById('mainScreenshot').src = src;
+                document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+                btn.classList.add('active');
+            }
+        </script>
+
+        <section class="ios-preview">
+            <div class="container">
+                <h2 class="section-title">iPod Classic on your iPhone</h2>
+                <p class="section-subtitle">Relive the nostalgia with a faithful click wheel interface.</p>
+                <div class="ios-screenshots">
+                    <div class="ios-row">
+                        <img src="blue.png" alt="Blue iPod Theme" class="ios-phone">
+                        <img src="pink.png" alt="Pink iPod Theme" class="ios-phone">
+                    </div>
+                    <div class="ios-row">
+                        <img src="green.png" alt="Green iPod Theme" class="ios-phone">
+                        <img src="yellow.png" alt="Yellow iPod Theme" class="ios-phone">
+                    </div>
+                </div>
+                <p class="screenshot-caption" style="text-align: center;">Choose from 7 iconic iPod colors</p>
+            </div>
+        </section>
+
+        <section class="features" id="features">
+            <div class="container">
+                <h2 class="section-title">Everything you need</h2>
+                <p class="section-subtitle">A complete music experience across all your devices.</p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">☁️</div>
+                        <h3>iCloud Sync</h3>
+                        <p>Your entire music library syncs seamlessly between your Mac and iPhone.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⬇️</div>
+                        <h3>YouTube Downloads</h3>
+                        <p>Download audio from YouTube directly to your library. Available in the direct download version.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>iPod Classic UI</h3>
+                        <p>Nostalgic click wheel interface on iOS. Navigate your music like it's 2001.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h3>Custom Themes</h3>
+                        <p>Personalize the player with beautiful color themes that match your style.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <h3>iTunes Lookup</h3>
+                        <p>Automatically fetch album artwork, artist info, and metadata from iTunes.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📂</div>
+                        <h3>Smart Organization</h3>
+                        <p>Tracks automatically organized by Artist and Album. Create custom playlists.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="download-section" id="download">
+            <div class="container">
+                <h2 class="section-title">Get Music 2001</h2>
+                <p class="section-subtitle">Available on Mac and iPhone</p>
+
+                <div class="download-grid">
+                    <!-- Direct Download -->
+                    <div class="download-card">
+                        <div class="download-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        </div>
+                        <h3>Direct Download</h3>
+                        <p>Full experience with YouTube downloads</p>
+                        <a href="https://github.com/okekedev/MusicIn2001/releases/latest" class="btn btn-primary">
+                            Download .dmg
+                        </a>
+                        <span class="download-note">macOS 13+ · Notarized</span>
+                    </div>
+
+                    <!-- Mac App Store -->
+                    <div class="download-card">
+                        <div class="download-icon">
+                            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"></path></svg>
+                        </div>
+                        <h3>Mac Store Version</h3>
+                        <p>Official Release</p>
+                        <a href="https://apps.apple.com/app/music-2001" class="btn btn-secondary">
+                            View on App Store
+                        </a>
+                        <span class="download-note">macOS 13+</span>
+                    </div>
+
+                    <!-- iOS App Store -->
+                    <div class="download-card">
+                        <div class="download-icon">
+                            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"></path></svg>
+                        </div>
+                        <h3>iPhone App</h3>
+                        <p>Official Release</p>
+                        <a href="https://apps.apple.com/app/music-2001" class="btn btn-secondary">
+                            View on App Store
+                        </a>
+                        <span class="download-note">iOS 17+</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Made with ♪ by <a href="https://github.com/okekedev">Christian Okeke</a></p>
+        </div>
+    </footer>
+</body>
+</html>

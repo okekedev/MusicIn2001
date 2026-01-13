@@ -2145,59 +2145,78 @@ struct DownloadSidebarContent: View {
                 .buttonStyle(.plain)
             }
 
-            // URL input
-            VStack(alignment: .leading, spacing: 6) {
-                ZStack(alignment: .leading) {
-                    if viewModel.urlInput.isEmpty {
-                        Text("e.g. youtube.com/watch?v=...")
-                            .font(.caption2)
-                            .foregroundColor(Music2001Theme.textTertiary)
-                            .padding(.leading, 8)
-                    }
-                    TextField("", text: $viewModel.urlInput)
-                        .textFieldStyle(.plain)
-                        .font(.caption2)
-                        .foregroundColor(Music2001Theme.textPrimary)
-                        .padding(8)
-                        .onSubmit {
-                            viewModel.downloadTrack()
+            if viewModel.canDownload {
+                // URL input (only when downloads are enabled)
+                VStack(alignment: .leading, spacing: 6) {
+                    ZStack(alignment: .leading) {
+                        if viewModel.urlInput.isEmpty {
+                            Text("e.g. youtube.com/watch?v=...")
+                                .font(.caption2)
+                                .foregroundColor(Music2001Theme.textTertiary)
+                                .padding(.leading, 8)
                         }
-                }
-                .background(Music2001Theme.elevatedBackground)
-                .cornerRadius(6)
-
-                Button {
-                    viewModel.downloadTrack()
-                } label: {
-                    HStack {
-                        Image(systemName: "arrow.down.circle.fill")
-                        Text("Download")
+                        TextField("", text: $viewModel.urlInput)
+                            .textFieldStyle(.plain)
+                            .font(.caption2)
+                            .foregroundColor(Music2001Theme.textPrimary)
+                            .padding(8)
+                            .onSubmit {
+                                viewModel.downloadTrack()
+                            }
                     }
-                    .font(.caption2)
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 6)
-                    .background(viewModel.urlInput.isEmpty ? Music2001Theme.textTertiary : Music2001Theme.primary)
+                    .background(Music2001Theme.elevatedBackground)
                     .cornerRadius(6)
-                    .contentShape(Rectangle())
+
+                    Button {
+                        viewModel.downloadTrack()
+                    } label: {
+                        HStack {
+                            Image(systemName: "arrow.down.circle.fill")
+                            Text("Download")
+                        }
+                        .font(.caption2)
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 6)
+                        .background(viewModel.urlInput.isEmpty ? Music2001Theme.textTertiary : Music2001Theme.primary)
+                        .cornerRadius(6)
+                        .contentShape(Rectangle())
+                    }
+                    .buttonStyle(.plain)
+                    .disabled(viewModel.urlInput.isEmpty || viewModel.isDownloading)
+
+                    Text("Tip: Use - Topic channels")
+                        .font(.system(size: 9))
+                        .foregroundColor(Music2001Theme.textTertiary)
                 }
-                .buttonStyle(.plain)
-                .disabled(viewModel.urlInput.isEmpty || viewModel.isDownloading)
 
-                Text("Tip: Use - Topic channels")
-                    .font(.system(size: 9))
-                    .foregroundColor(Music2001Theme.textTertiary)
-            }
+                // Progress
+                if viewModel.isDownloading {
+                    HStack(spacing: 6) {
+                        ProgressView()
+                            .scaleEffect(0.6)
+                        Text(viewModel.downloadProgress)
+                            .font(.caption2)
+                            .foregroundColor(Music2001Theme.textSecondary)
+                    }
+                }
+            } else {
+                // Downloads disabled (App Store sandbox mode)
+                VStack(spacing: 12) {
+                    Image(systemName: "arrow.down.circle")
+                        .font(.title2)
+                        .foregroundColor(Music2001Theme.textTertiary)
 
-            // Progress
-            if viewModel.isDownloading {
-                HStack(spacing: 6) {
-                    ProgressView()
-                        .scaleEffect(0.6)
-                    Text(viewModel.downloadProgress)
+                    Text("Downloads Unavailable")
+                        .font(.caption.weight(.medium))
+                        .foregroundColor(Music2001Theme.textPrimary)
+
+                    Text("This feature is only available in the direct download version.")
                         .font(.caption2)
                         .foregroundColor(Music2001Theme.textSecondary)
+                        .multilineTextAlignment(.center)
                 }
+                .padding(.vertical, 8)
             }
 
             Spacer()
