@@ -17,31 +17,42 @@ class FileManagerService {
     }
 
     private func setupDirectories() {
-        // Mac uses iCloud container exclusively
+        // Try standard iCloud API first (works for sandboxed apps)
         if let iCloudDocs = fm.url(forUbiquityContainerIdentifier: "iCloud.com.christianokeke.mymusiccontainer")?.appendingPathComponent("Documents") {
             containerURL = iCloudDocs
             iCloudAvailable = true
-            print("[MyMusic] Using iCloud container: \(iCloudDocs.path)")
+            print("[MyMusic] Using iCloud container (API): \(iCloudDocs.path)")
+        } else {
+            // For non-sandboxed apps, access iCloud directly via Mobile Documents
+            let homeDir = fm.homeDirectoryForCurrentUser
+            let mobileDocsPath = homeDir
+                .appendingPathComponent("Library/Mobile Documents/iCloud~com~christianokeke~mymusiccontainer/Documents")
 
-            // Ensure folders exist
-            try? fm.createDirectory(at: iCloudDocs, withIntermediateDirectories: true)
-            try? fm.createDirectory(at: iCloudDocs.appendingPathComponent("Tracks"), withIntermediateDirectories: true)
-            try? fm.createDirectory(at: iCloudDocs.appendingPathComponent("Artwork"), withIntermediateDirectories: true)
+            // Check if user is signed into iCloud by checking if Mobile Documents exists
+            let mobileDocsRoot = homeDir.appendingPathComponent("Library/Mobile Documents")
+            if fm.fileExists(atPath: mobileDocsRoot.path) {
+                containerURL = mobileDocsPath
+                iCloudAvailable = true
+                print("[MyMusic] Using iCloud container (direct): \(mobileDocsPath.path)")
+            } else {
+                // Fallback if iCloud not available
+                containerURL = fm.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+                    .appendingPathComponent("MyMusic")
+                iCloudAvailable = false
+                print("[MyMusic] WARNING: iCloud not available, using local: \(containerURL.path)")
+            }
+        }
 
-            // Download all files for offline playback
+        // Ensure folders exist
+        try? fm.createDirectory(at: containerURL, withIntermediateDirectories: true)
+        try? fm.createDirectory(at: containerURL.appendingPathComponent("Tracks"), withIntermediateDirectories: true)
+        try? fm.createDirectory(at: containerURL.appendingPathComponent("Artwork"), withIntermediateDirectories: true)
+
+        // Download all files for offline playback if using iCloud
+        if iCloudAvailable {
             DispatchQueue.main.async { [weak self] in
                 self?.downloadAllForOffline()
             }
-        } else {
-            // Fallback if iCloud not available (shouldn't happen normally)
-            containerURL = fm.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
-                .appendingPathComponent("MyMusic")
-            iCloudAvailable = false
-            print("[MyMusic] WARNING: iCloud not available, using local: \(containerURL.path)")
-
-            try? fm.createDirectory(at: containerURL, withIntermediateDirectories: true)
-            try? fm.createDirectory(at: containerURL.appendingPathComponent("Tracks"), withIntermediateDirectories: true)
-            try? fm.createDirectory(at: containerURL.appendingPathComponent("Artwork"), withIntermediateDirectories: true)
         }
     }
 
