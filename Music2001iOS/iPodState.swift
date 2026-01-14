@@ -4,6 +4,7 @@
 //
 
 import SwiftUI
+import UIKit
 import AVFoundation
 import Observation
 import CryptoKit
@@ -804,6 +805,9 @@ final class iPodState {
         case .settings:
             return [
                 MenuItem(title: "How to Use", destination: .howToUse),
+                MenuItem(title: "Open in Files") { [weak self] in
+                    self?.openInFilesApp()
+                },
                 MenuItem(title: "Repeat", destination: .repeatSetting),
                 MenuItem(title: "Color", destination: .colorPicker),
                 MenuItem(title: "Support", destination: .support)
@@ -853,6 +857,22 @@ final class iPodState {
 
         case .nowPlaying:
             return []
+        }
+    }
+
+    // MARK: - Open in Files
+
+    func openInFilesApp() {
+        // Open the Files app to the app's iCloud container
+        // The folder path in Files app is: iCloud Drive > Music in 2001
+        let fileManager = FileManagerService.shared
+        if let iCloudURL = fileManager.iCloudDirectory {
+            // Use the shareddocuments URL scheme to open Files app
+            // Format: shareddocuments://<path>
+            let encodedPath = iCloudURL.path.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+            if let url = URL(string: "shareddocuments://\(encodedPath)") {
+                UIApplication.shared.open(url)
+            }
         }
     }
 
