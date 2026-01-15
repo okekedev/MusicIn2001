@@ -120,6 +120,18 @@ struct PlaylistSidebar: View {
                     .font(.subheadline.weight(.semibold))
                     .foregroundColor(Music2001Theme.textPrimary)
                 Spacer()
+                Button {
+                    viewModel.syncToiCloud()
+                } label: {
+                    Image(systemName: viewModel.isSyncingToiCloud ? "arrow.triangle.2.circlepath" : "icloud.and.arrow.up")
+                        .font(.system(size: 11))
+                        .foregroundColor(Music2001Theme.textSecondary)
+                        .rotationEffect(.degrees(viewModel.isSyncingToiCloud ? 360 : 0))
+                        .animation(viewModel.isSyncingToiCloud ? .linear(duration: 1).repeatForever(autoreverses: false) : .default, value: viewModel.isSyncingToiCloud)
+                }
+                .buttonStyle(.plain)
+                .help("Sync library to iCloud")
+                .disabled(viewModel.isSyncingToiCloud)
             }
             .padding(12)
             .background(Music2001Theme.cardBackground)
@@ -969,18 +981,20 @@ struct MiniToolbar: View {
                         }
                     }
 
-                    // Download button
-                    ToolbarIconButton(
-                        icon: "arrow.down.circle",
-                        isActive: showDownloadSidebar,
-                        activeColor: Music2001Theme.primary
-                    ) {
-                        withAnimation(.easeInOut(duration: 0.15)) {
-                            showDownloadSidebar.toggle()
-                            // Close others
-                            showSearch = false
-                            searchText = ""
-                            showThemeEditor = false
+                    // Download button (only shown for non-sandboxed builds)
+                    if viewModel.canDownload {
+                        ToolbarIconButton(
+                            icon: "arrow.down.circle",
+                            isActive: showDownloadSidebar,
+                            activeColor: Music2001Theme.primary
+                        ) {
+                            withAnimation(.easeInOut(duration: 0.15)) {
+                                showDownloadSidebar.toggle()
+                                // Close others
+                                showSearch = false
+                                searchText = ""
+                                showThemeEditor = false
+                            }
                         }
                     }
 

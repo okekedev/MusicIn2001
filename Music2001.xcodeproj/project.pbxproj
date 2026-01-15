@@ -31,6 +31,8 @@
 		AA2AE1B72F0CAC73002630C7 /* iPodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2AE1AC2F0CAC73002630C7 /* iPodView.swift */; };
 		AA2AE1B82F0CAC73002630C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA2AE1AE2F0CAC73002630C7 /* Assets.xcassets */; };
 		AA2AE1C02F0CAC73002630C7 /* TipManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2AE1BF2F0CAC73002630C7 /* TipManager.swift */; };
+		AA3A4F442F1853B000854E3A /* DemoMusic in Resources */ = {isa = PBXBuildFile; fileRef = AA3A4F432F1853B000854E3A /* DemoMusic */; };
+		AA3A4F452F18562600854E3A /* DemoMusic in Resources */ = {isa = PBXBuildFile; fileRef = AA3A4F432F1853B000854E3A /* DemoMusic */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +65,7 @@
 		AA2AE1B02F0CAC73002630C7 /* Music2001iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Music2001iOS.entitlements; sourceTree = "<group>"; };
 		AA2AE1B12F0CAC73002630C7 /* Music2001iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music2001iOSApp.swift; sourceTree = "<group>"; };
 		AA2AE1BF2F0CAC73002630C7 /* TipManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipManager.swift; sourceTree = "<group>"; };
+		AA3A4F432F1853B000854E3A /* DemoMusic */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DemoMusic; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +93,7 @@
 				A10000050000000000000002 /* Music2001 */,
 				A10000020000000000000020 /* Python */,
 				A10000050000000000000003 /* Products */,
+				AA3A4F432F1853B000854E3A /* DemoMusic */,
 			);
 			sourceTree = "<group>";
 		};
@@ -305,6 +309,7 @@
 			files = (
 				A10000010000000000000019 /* Assets.xcassets in Resources */,
 				A10000010000000000000020 /* Python in Resources */,
+				AA3A4F442F1853B000854E3A /* DemoMusic in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,6 +317,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA3A4F452F18562600854E3A /* DemoMusic in Resources */,
 				AA2AE1B82F0CAC73002630C7 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

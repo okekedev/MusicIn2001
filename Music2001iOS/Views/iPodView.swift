@@ -274,6 +274,21 @@ struct MenuListView: View {
                 .background(Color(red: 0.78, green: 0.88, blue: 0.86).opacity(0.95))
             }
 
+            // Sync progress overlay (while syncing)
+            if state.isSyncing {
+                VStack(spacing: 8) {
+                    ProgressView()
+                        .scaleEffect(1.2)
+                        .tint(Color(white: 0.15))
+                    Text(state.syncProgress)
+                        .font(.system(size: 12, weight: .medium))
+                        .multilineTextAlignment(.center)
+                }
+                .foregroundColor(Color(white: 0.15))
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color(red: 0.78, green: 0.88, blue: 0.86).opacity(0.95))
+            }
+
             // Sync result overlay
             if state.showingSyncResult {
                 VStack(spacing: 8) {
