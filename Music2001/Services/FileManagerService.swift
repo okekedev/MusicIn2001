@@ -54,6 +54,74 @@ class FileManagerService {
                 self?.downloadAllForOffline()
             }
         }
+
+        // Copy demo music on first launch
+        copyDemoMusicIfNeeded()
+    }
+
+    // MARK: - Demo Music
+
+    /// Copy bundled demo music to user's library on first launch
+    private func copyDemoMusicIfNeeded() {
+        let hasInstalledDemo = UserDefaults.standard.bool(forKey: "hasInstalledDemoMusic")
+        guard !hasInstalledDemo else { return }
+
+        guard let demoMusicURL = Bundle.main.url(forResource: "DemoMusic", withExtension: nil) else {
+            print("[MyMusic] No demo music bundle found")
+            return
+        }
+
+        let tracksDir = fullTracksDirectory
+        let artworkDir = artworkDirectory
+
+        // Copy all demo tracks
+        let demoTracksDir = demoMusicURL.appendingPathComponent("Christian Okeke/LoFi")
+        if let enumerator = fm.enumerator(at: demoTracksDir, includingPropertiesForKeys: [.isRegularFileKey]) {
+            for case let fileURL as URL in enumerator {
+                let ext = fileURL.pathExtension.lowercased()
+                guard ["mp3", "m4a", "wav", "aac", "flac"].contains(ext) else { continue }
+
+                // Get relative path: Christian Okeke/LoFi/Track.mp3
+                let relativePath = "Christian Okeke/LoFi/" + fileURL.lastPathComponent
+                let destURL = tracksDir.appendingPathComponent(relativePath)
+
+                // Create directory structure
+                try? fm.createDirectory(at: destURL.deletingLastPathComponent(), withIntermediateDirectories: true)
+
+                // Copy file if it doesn't exist
+                if !fm.fileExists(atPath: destURL.path) {
+                    do {
+                        try fm.copyItem(at: fileURL, to: destURL)
+                        print("[MyMusic] Copied demo track: \(relativePath)")
+                    } catch {
+                        print("[MyMusic] Failed to copy demo track: \(error.localizedDescription)")
+                    }
+                }
+            }
+        }
+
+        // Copy artwork
+        let demoArtworkDir = demoMusicURL.appendingPathComponent("Artwork")
+        if let enumerator = fm.enumerator(at: demoArtworkDir, includingPropertiesForKeys: [.isRegularFileKey]) {
+            for case let fileURL as URL in enumerator {
+                let ext = fileURL.pathExtension.lowercased()
+                guard ["jpg", "jpeg", "png"].contains(ext) else { continue }
+
+                let destURL = artworkDir.appendingPathComponent(fileURL.lastPathComponent)
+
+                if !fm.fileExists(atPath: destURL.path) {
+                    do {
+                        try fm.copyItem(at: fileURL, to: destURL)
+                        print("[MyMusic] Copied demo artwork: \(fileURL.lastPathComponent)")
+                    } catch {
+                        print("[MyMusic] Failed to copy demo artwork: \(error.localizedDescription)")
+                    }
+                }
+            }
+        }
+
+        UserDefaults.standard.set(true, forKey: "hasInstalledDemoMusic")
+        print("[MyMusic] Demo music installed")
     }
 
     // MARK: - Directory Paths
@@ -167,9 +235,10 @@ class FileManagerService {
         return 0
     }
 
-    /// No-op on Mac since we use iCloud directly. Kept for API compatibility.
+    /// No-op - files in iCloud container sync automatically
     func copyToiCloud(fileURL: URL) {
-        // Mac uses iCloud container directly - files are already in iCloud
+        // Files are already in iCloud container - macOS handles sync automatically
+        // No need to do anything extra
     }
 
     // MARK: - File Operations

@@ -4,7 +4,6 @@
 //
 
 import SwiftUI
-import UIKit
 import AVFoundation
 import Observation
 import CryptoKit
@@ -109,7 +108,11 @@ final class iPodState {
             object: nil,
             queue: .main
         ) { [weak self] notification in
-            self?.handleAudioInterruption(notification)
+            guard let self = self else { return }
+            let userInfo = notification.userInfo
+            MainActor.assumeIsolated {
+                self.handleAudioInterruptionWithInfo(userInfo)
+            }
         }
 
         // Setup remote controls (lock screen, Control Center)
@@ -117,6 +120,9 @@ final class iPodState {
 
         // Setup directories (iCloud Drive or local fallback)
         setupDirectories()
+
+        // Copy demo music on first launch
+        copyDemoMusicIfNeeded()
 
         loadLibrary()
         loadPlaylists()
@@ -170,6 +176,75 @@ final class iPodState {
             debugStatus = "iCloud container not available"
             print("[MyMusic] iCloud container not available - using local only")
         }
+    }
+
+    // MARK: - Demo Music
+
+    /// Copy bundled demo music to user's library on first launch
+    private func copyDemoMusicIfNeeded() {
+        let hasInstalledDemo = UserDefaults.standard.bool(forKey: "hasInstalledDemoMusic")
+        guard !hasInstalledDemo else { return }
+
+        let fm = FileManager.default
+        guard let demoMusicURL = Bundle.main.url(forResource: "DemoMusic", withExtension: nil) else {
+            print("[MyMusic] No demo music bundle found")
+            return
+        }
+
+        let tracksDir = localMusicURL.appendingPathComponent("Tracks")
+        let artworkDir = localMusicURL.appendingPathComponent("Artwork")
+
+        // Ensure directories exist
+        try? fm.createDirectory(at: artworkDir, withIntermediateDirectories: true)
+
+        // Copy all demo tracks
+        let demoTracksDir = demoMusicURL.appendingPathComponent("Christian Okeke/LoFi")
+        if let enumerator = fm.enumerator(at: demoTracksDir, includingPropertiesForKeys: [.isRegularFileKey]) {
+            for case let fileURL as URL in enumerator {
+                let ext = fileURL.pathExtension.lowercased()
+                guard ["mp3", "m4a", "wav", "aac", "flac"].contains(ext) else { continue }
+
+                // Get relative path: Christian Okeke/LoFi/Track.mp3
+                let relativePath = "Christian Okeke/LoFi/" + fileURL.lastPathComponent
+                let destURL = tracksDir.appendingPathComponent(relativePath)
+
+                // Create directory structure
+                try? fm.createDirectory(at: destURL.deletingLastPathComponent(), withIntermediateDirectories: true)
+
+                // Copy file if it doesn't exist
+                if !fm.fileExists(atPath: destURL.path) {
+                    do {
+                        try fm.copyItem(at: fileURL, to: destURL)
+                        print("[MyMusic] Copied demo track: \(relativePath)")
+                    } catch {
+                        print("[MyMusic] Failed to copy demo track: \(error.localizedDescription)")
+                    }
+                }
+            }
+        }
+
+        // Copy artwork
+        let demoArtworkDir = demoMusicURL.appendingPathComponent("Artwork")
+        if let enumerator = fm.enumerator(at: demoArtworkDir, includingPropertiesForKeys: [.isRegularFileKey]) {
+            for case let fileURL as URL in enumerator {
+                let ext = fileURL.pathExtension.lowercased()
+                guard ["jpg", "jpeg", "png"].contains(ext) else { continue }
+
+                let destURL = artworkDir.appendingPathComponent(fileURL.lastPathComponent)
+
+                if !fm.fileExists(atPath: destURL.path) {
+                    do {
+                        try fm.copyItem(at: fileURL, to: destURL)
+                        print("[MyMusic] Copied demo artwork: \(fileURL.lastPathComponent)")
+                    } catch {
+                        print("[MyMusic] Failed to copy demo artwork: \(error.localizedDescription)")
+                    }
+                }
+            }
+        }
+
+        UserDefaults.standard.set(true, forKey: "hasInstalledDemoMusic")
+        print("[MyMusic] Demo music installed")
     }
 
     // MARK: - iCloud File Download
@@ -240,15 +315,35 @@ final class iPodState {
     }
 
     /// Collect all file URLs from a directory (synchronous helper for Swift 6 compatibility)
+    /// Also handles iCloud placeholder files (.icloud extension)
     private func collectFiles(at directory: URL, withExtensions extensions: [String]) -> [URL] {
         var files: [URL] = []
         let fm = FileManager.default
-        guard let enumerator = fm.enumerator(at: directory, includingPropertiesForKeys: [.isRegularFileKey]) else {
+        guard let enumerator = fm.enumerator(at: directory, includingPropertiesForKeys: [.isRegularFileKey, .ubiquitousItemDownloadingStatusKey]) else {
             return files
         }
         for case let fileURL as URL in enumerator {
-            if extensions.contains(fileURL.pathExtension.lowercased()) {
+            let ext = fileURL.pathExtension.lowercased()
+
+            // Check for regular files
+            if extensions.contains(ext) {
                 files.append(fileURL)
+                continue
+            }
+
+            // Check for iCloud placeholder files (.Song.mp3.icloud -> mp3)
+            if ext == "icloud" {
+                // iCloud placeholders are named: .OriginalName.originalExt.icloud
+                let filename = fileURL.deletingPathExtension().lastPathComponent // Remove .icloud
+                if filename.hasPrefix(".") {
+                    let realFilename = String(filename.dropFirst()) // Remove leading dot
+                    let realExt = (realFilename as NSString).pathExtension.lowercased()
+                    if extensions.contains(realExt) {
+                        // Convert placeholder path to real path for comparison
+                        let realURL = fileURL.deletingLastPathComponent().appendingPathComponent(realFilename)
+                        files.append(realURL)
+                    }
+                }
             }
         }
         return files
@@ -361,6 +456,96 @@ final class iPodState {
             print("[MyMusic] Synced \(artworkSynced) artwork files")
         }
 
+        // Remove local tracks that no longer exist in iCloud (deleted on Mac)
+        // Only do this if iCloud has tracks (empty iCloud might mean network issue, not deletion)
+        print("[MyMusic] === DELETION SYNC DEBUG ===")
+        print("[MyMusic] iCloud tracks dir: \(iCloudTracksDir.path)")
+        print("[MyMusic] iCloud track count: \(iCloudTrackFiles.count)")
+
+        // Log all iCloud tracks
+        print("[MyMusic] --- iCloud tracks ---")
+        for (index, file) in iCloudTrackFiles.enumerated() {
+            print("[MyMusic] iCloud[\(index)]: \(file.lastPathComponent) @ \(file.path)")
+        }
+
+        if !iCloudTrackFiles.isEmpty {
+            // Standardize paths to handle /var vs /private/var differences on iOS
+            let iCloudTracksDirStd = iCloudTracksDir.standardizedFileURL.path
+            let iCloudRelativePaths = Set(iCloudTrackFiles.map { fileURL -> String in
+                let path = fileURL.standardizedFileURL.path
+                let relative = String(path.dropFirst(iCloudTracksDirStd.count + 1))
+                return relative
+            })
+
+            print("[MyMusic] --- iCloud relative paths ---")
+            for path in iCloudRelativePaths.sorted() {
+                print("[MyMusic] iCloud rel: \(path)")
+            }
+
+            let localTracksDirStd = localTracksDir.standardizedFileURL.path
+            let localTrackFiles = collectFiles(at: localTracksDir, withExtensions: audioExtensions)
+
+            print("[MyMusic] --- Local tracks ---")
+            print("[MyMusic] Local tracks dir: \(localTracksDir.path)")
+            print("[MyMusic] Local track count: \(localTrackFiles.count)")
+            for (index, file) in localTrackFiles.enumerated() {
+                print("[MyMusic] Local[\(index)]: \(file.lastPathComponent) @ \(file.path)")
+            }
+
+            var deletedCount = 0
+            var skippedDemoCount = 0
+            var keptCount = 0
+
+            print("[MyMusic] --- Checking each local track ---")
+            for localFile in localTrackFiles {
+                let localFileStd = localFile.standardizedFileURL.path
+                let relativePath = String(localFileStd.dropFirst(localTracksDirStd.count + 1))
+
+                // Skip demo music (don't delete bundled content) - only the exact original files
+                let demoFiles = [
+                    "Christian Okeke/LoFi/Coffee Rings.mp3",
+                    "Christian Okeke/LoFi/Midnight Bus Ride.mp3"
+                ]
+                if demoFiles.contains(relativePath) {
+                    print("[MyMusic] SKIP (demo): \(relativePath)")
+                    skippedDemoCount += 1
+                    continue
+                }
+
+                if !iCloudRelativePaths.contains(relativePath) {
+                    print("[MyMusic] DELETE (not in iCloud): \(relativePath)")
+                    do {
+                        try fm.removeItem(at: localFile)
+                        print("[MyMusic] Removed: \(relativePath)")
+                        deletedCount += 1
+                    } catch {
+                        print("[MyMusic] Failed to remove: \(error.localizedDescription)")
+                    }
+                } else {
+                    print("[MyMusic] KEEP (in iCloud): \(relativePath)")
+                    keptCount += 1
+                }
+            }
+            print("[MyMusic] === SUMMARY: kept=\(keptCount), deleted=\(deletedCount), skipped_demo=\(skippedDemoCount) ===")
+        } else {
+            print("[MyMusic] Skipping deletion check - iCloud tracks list is empty (may be offline)")
+        }
+
+        // Remove orphaned artwork (only if iCloud has artwork - empty means no sync yet, not deletion)
+        if !iCloudArtworkFiles.isEmpty {
+            let iCloudArtworkNames = Set(iCloudArtworkFiles.map { $0.lastPathComponent })
+            let localArtworkFiles = collectFiles(at: localArtworkDir, withExtensions: imageExtensions)
+            for localArtwork in localArtworkFiles {
+                let filename = localArtwork.lastPathComponent
+                // Skip demo artwork
+                if filename == "Coffee Rings.jpg" || filename == "Midnight Bus Ride.jpg" { continue }
+
+                if !iCloudArtworkNames.contains(filename) {
+                    try? fm.removeItem(at: localArtwork)
+                }
+            }
+        }
+
         // Sync Playlists: iCloud → Local
         let iCloudPlaylistsFile = iCloudBase.appendingPathComponent("playlists.json")
         let localPlaylistsFile = localMusicURL.appendingPathComponent("playlists.json")
@@ -444,12 +629,9 @@ final class iPodState {
             let artist = components[components.count - 3]
             let album = components[components.count - 2]
             let genre = "Unknown"
-            var trackDuration: TimeInterval = 0
+            let trackDuration: TimeInterval = 0
 
-            // Get duration
-            if let player = try? AVAudioPlayer(contentsOf: fileURL) {
-                trackDuration = player.duration
-            }
+            // Duration will be set when track is played (much faster load)
 
             // Calculate relative path - standardize paths to handle /private/var vs /var
             let standardizedFile = fileURL.standardizedFileURL.path
@@ -805,9 +987,6 @@ final class iPodState {
         case .settings:
             return [
                 MenuItem(title: "How to Use", destination: .howToUse),
-                MenuItem(title: "Open in Files") { [weak self] in
-                    self?.openInFilesApp()
-                },
                 MenuItem(title: "Repeat", destination: .repeatSetting),
                 MenuItem(title: "Color", destination: .colorPicker),
                 MenuItem(title: "Support", destination: .support)
@@ -857,22 +1036,6 @@ final class iPodState {
 
         case .nowPlaying:
             return []
-        }
-    }
-
-    // MARK: - Open in Files
-
-    func openInFilesApp() {
-        // Open the Files app to the app's iCloud container
-        // The folder path in Files app is: iCloud Drive > Music in 2001
-        let fileManager = FileManagerService.shared
-        if let iCloudURL = fileManager.iCloudDirectory {
-            // Use the shareddocuments URL scheme to open Files app
-            // Format: shareddocuments://<path>
-            let encodedPath = iCloudURL.path.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-            if let url = URL(string: "shareddocuments://\(encodedPath)") {
-                UIApplication.shared.open(url)
-            }
         }
     }
 
@@ -1097,8 +1260,8 @@ final class iPodState {
 
     // MARK: - Audio Interruption Handling
 
-    private func handleAudioInterruption(_ notification: Notification) {
-        guard let userInfo = notification.userInfo,
+    private func handleAudioInterruptionWithInfo(_ userInfo: [AnyHashable: Any]?) {
+        guard let userInfo = userInfo,
               let typeValue = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt,
               let type = AVAudioSession.InterruptionType(rawValue: typeValue) else {
             return

@@ -113,6 +113,7 @@ class PlayerViewModel: ObservableObject {
     @Published var urlInput: String = ""
     @Published var isDownloading: Bool = false
     @Published var downloadProgress: String = ""
+    @Published var isSyncingToiCloud: Bool = false
 
     // UI State
     @Published var searchText: String = ""
@@ -362,6 +363,10 @@ class PlayerViewModel: ObservableObject {
 
     // Known metadata mappings for existing tracks
     private static let knownMetadata: [String: (artist: String, album: String)] = [
+        // Demo tracks
+        "Coffee Rings": ("Christian Okeke", "LoFi"),
+        "Midnight Bus Ride": ("Christian Okeke", "LoFi"),
+        // Other tracks
         "Lecrae - Always Knew": ("Lecrae", "All Things Work Together"),
         "King Chav-Born Ready": ("King Chav", "The Golden Lining"),
         "Steven Malcolm": ("Steven Malcolm", "Tree"),
@@ -910,6 +915,26 @@ class PlayerViewModel: ObservableObject {
         newPlaylistName = ""
     }
 
+    // MARK: - iCloud Sync
+
+    /// Visual feedback for iCloud sync status
+    /// Files in iCloud container sync automatically - this just shows confirmation
+    func syncToiCloud() {
+        guard !isSyncingToiCloud else { return }
+        isSyncingToiCloud = true
+
+        Task {
+            // Files sync automatically since they're in the iCloud container
+            // Just show visual feedback
+            try? await Task.sleep(nanoseconds: 500_000_000)
+
+            await MainActor.run {
+                isSyncingToiCloud = false
+            }
+            print("[MyMusic] iCloud sync - \(library.count) tracks in iCloud container")
+        }
+    }
+
     // MARK: - Download
 
     /// Check if YouTube downloading is available (disabled in App Store builds due to sandbox)
@@ -1302,15 +1327,20 @@ class PlayerViewModel: ObservableObject {
             playlists[i].trackIDs.removeAll { $0 == track.id }
         }
 
-        // Remove file locally
-        try? FileManager.default.removeItem(at: track.fileURL)
-        if let artworkURL = track.artworkURL {
-            try? FileManager.default.removeItem(at: artworkURL)
-        }
-
+        // Save changes immediately (UI updates)
         saveLibrary()
         savePlaylists()
         trackToDelete = nil
+
+        // Remove files in background (iCloud operations can be slow)
+        let fileURL = track.fileURL
+        let artworkURL = track.artworkURL
+        DispatchQueue.global(qos: .utility).async {
+            try? FileManager.default.removeItem(at: fileURL)
+            if let artworkURL = artworkURL {
+                try? FileManager.default.removeItem(at: artworkURL)
+            }
+        }
     }
 }
 
