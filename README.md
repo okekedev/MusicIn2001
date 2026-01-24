@@ -28,10 +28,10 @@ A music player that brings back the simplicity of 2001 - when you owned your mus
 ### iOS App
 
 <p align="left">
-  <img src="ScreenshotsIOS/blue.png" width="180" />
-  <img src="ScreenshotsIOS/pink.png" width="180" />
-  <img src="ScreenshotsIOS/green.png" width="180" />
-  <img src="ScreenshotsIOS/yellow.png" width="180" />
+  <img src="ScreenshotsIOS/blackgreen.png" width="180" />
+  <img src="ScreenshotsIOS/bluewhite.png" width="180" />
+  <img src="ScreenshotsIOS/pinkwhite.png" width="180" />
+  <img src="ScreenshotsIOS/yellowblack.png" width="180" />
 </p>
 
 ## Features
@@ -45,8 +45,8 @@ A music player that brings back the simplicity of 2001 - when you owned your mus
 - Sync to iCloud for your iOS device
 
 ### iOS App
-- Classic iPod-inspired click wheel interface
-- 7 iconic iPod colors to choose from
+- Beautiful Zune HD-inspired touch interface
+- Multiple stunning color themes to choose from
 - Browse by artists, albums, songs, or playlists
 - Background playback with lock screen controls
 - Syncs automatically from your Mac library
