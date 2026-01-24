@@ -45,7 +45,7 @@ struct Music2001iOSApp: App {
 
     var body: some Scene {
         WindowGroup {
-            iPodView()
+            ZunePlayerView()
                 .environment(state)
         }
     }

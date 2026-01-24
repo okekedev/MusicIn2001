@@ -54,7 +54,9 @@ enum Screen: Equatable {
     case genreTracks(genre: String)
     case nowPlaying
     case settings
-    case colorPicker
+    case colorSettings
+    case shellColorPicker
+    case backgroundPicker
     case repeatSetting
     case support
     case howToUse
@@ -120,51 +122,81 @@ struct iPodColor: Identifiable, Equatable {
             centerButton: Color(white: 0.12),
             wheelText: Color(white: 0.6),
             background: Color(white: 0.25)
-        ),
-        // Red - darker red wheel, white text (like Product Red iPod)
-        iPodColor(
-            name: "Red",
-            shell: Color(red: 0.85, green: 0.12, blue: 0.12),
-            wheel: Color(red: 0.65, green: 0.08, blue: 0.08),
-            centerButton: Color(red: 0.85, green: 0.12, blue: 0.12),
-            wheelText: Color.white,
-            background: Color(red: 0.35, green: 0.05, blue: 0.05)
-        ),
-        // Blue - darker blue wheel, white text (like blue iPod nano)
-        iPodColor(
-            name: "Blue",
-            shell: Color(red: 0.12, green: 0.45, blue: 0.85),
-            wheel: Color(red: 0.08, green: 0.35, blue: 0.65),
-            centerButton: Color(red: 0.12, green: 0.45, blue: 0.85),
-            wheelText: Color.white,
-            background: Color(red: 0.05, green: 0.15, blue: 0.35)
-        ),
-        // Green - darker green wheel, white text (like green iPod nano)
-        iPodColor(
-            name: "Green",
-            shell: Color(red: 0.12, green: 0.70, blue: 0.25),
-            wheel: Color(red: 0.08, green: 0.52, blue: 0.18),
-            centerButton: Color(red: 0.12, green: 0.70, blue: 0.25),
-            wheelText: Color.white,
-            background: Color(red: 0.05, green: 0.25, blue: 0.08)
-        ),
-        // Pink - darker pink wheel, white text (like pink iPod nano)
-        iPodColor(
-            name: "Pink",
-            shell: Color(red: 0.95, green: 0.45, blue: 0.65),
-            wheel: Color(red: 0.75, green: 0.35, blue: 0.50),
-            centerButton: Color(red: 0.95, green: 0.45, blue: 0.65),
-            wheelText: Color.white,
-            background: Color(red: 0.35, green: 0.15, blue: 0.22)
-        ),
-        // Yellow - darker yellow wheel, dark text (like yellow iPod nano)
-        iPodColor(
-            name: "Yellow",
-            shell: Color(red: 0.98, green: 0.85, blue: 0.25),
-            wheel: Color(red: 0.80, green: 0.68, blue: 0.18),
-            centerButton: Color(red: 0.98, green: 0.85, blue: 0.25),
-            wheelText: Color(white: 0.25),
-            background: Color(red: 0.38, green: 0.32, blue: 0.08)
-        ),
+        )
     ]
 }
+// MARK: - Background Gradient Themes
+
+struct BackgroundTheme: Identifiable, Equatable {
+    let id = UUID()
+    let name: String
+    let colors: [Color]
+    
+    static let themes: [BackgroundTheme] = [
+        BackgroundTheme(
+            name: "Default Purple",
+            colors: [
+                Color(red: 0.4, green: 0.2, blue: 0.6),
+                Color(red: 0.2, green: 0.1, blue: 0.4),
+                Color(red: 0.1, green: 0.05, blue: 0.2)
+            ]
+        ),
+        BackgroundTheme(
+            name: "Red",
+            colors: [
+                Color(red: 0.6, green: 0.15, blue: 0.15),
+                Color(red: 0.4, green: 0.08, blue: 0.08),
+                Color(red: 0.2, green: 0.03, blue: 0.03)
+            ]
+        ),
+        BackgroundTheme(
+            name: "Blue",
+            colors: [
+                Color(red: 0.15, green: 0.3, blue: 0.6),
+                Color(red: 0.08, green: 0.15, blue: 0.4),
+                Color(red: 0.03, green: 0.08, blue: 0.2)
+            ]
+        ),
+        BackgroundTheme(
+            name: "Green",
+            colors: [
+                Color(red: 0.15, green: 0.5, blue: 0.25),
+                Color(red: 0.08, green: 0.3, blue: 0.15),
+                Color(red: 0.03, green: 0.15, blue: 0.08)
+            ]
+        ),
+        BackgroundTheme(
+            name: "Yellow",
+            colors: [
+                Color(red: 0.6, green: 0.5, blue: 0.1),
+                Color(red: 0.4, green: 0.3, blue: 0.05),
+                Color(red: 0.2, green: 0.15, blue: 0.02)
+            ]
+        ),
+        BackgroundTheme(
+            name: "Orange",
+            colors: [
+                Color(red: 0.7, green: 0.35, blue: 0.1),
+                Color(red: 0.5, green: 0.2, blue: 0.05),
+                Color(red: 0.25, green: 0.1, blue: 0.02)
+            ]
+        ),
+        BackgroundTheme(
+            name: "Pink",
+            colors: [
+                Color(red: 0.6, green: 0.2, blue: 0.4),
+                Color(red: 0.4, green: 0.1, blue: 0.25),
+                Color(red: 0.2, green: 0.05, blue: 0.12)
+            ]
+        ),
+        BackgroundTheme(
+            name: "Teal",
+            colors: [
+                Color(red: 0.1, green: 0.5, blue: 0.5),
+                Color(red: 0.05, green: 0.3, blue: 0.3),
+                Color(red: 0.02, green: 0.15, blue: 0.15)
+            ]
+        )
+    ]
+}
+
