@@ -52,8 +52,12 @@ final class iPodState {
     var shuffleMode: ShuffleMode = .off
     var repeatMode: RepeatMode = .off
 
-    // Appearance (default to Black theme - index 1)
+    // Appearance (default to Black shell + Default Purple background)
     var selectedColor: iPodColor = iPodColor.presets[1]
+    var selectedBackgroundTheme: BackgroundTheme = BackgroundTheme.themes[0]
+    
+    // Haptic feedback setting
+    var hapticFeedbackEnabled: Bool = true
 
     // Tips
     let tipManager = TipManager.shared
@@ -587,16 +591,38 @@ final class iPodState {
            colorIndex < iPodColor.presets.count {
             selectedColor = iPodColor.presets[colorIndex]
         }
+        if let bgIndex = UserDefaults.standard.object(forKey: "MixorBackgroundIndex") as? Int,
+           bgIndex < BackgroundTheme.themes.count {
+            selectedBackgroundTheme = BackgroundTheme.themes[bgIndex]
+        }
+        // Load haptic feedback setting (default to true if not set)
+        if let hapticEnabled = UserDefaults.standard.object(forKey: "MixorHapticFeedback") as? Bool {
+            hapticFeedbackEnabled = hapticEnabled
+        }
     }
 
     func saveAppearanceSettings() {
         if let index = iPodColor.presets.firstIndex(where: { $0.name == selectedColor.name }) {
             UserDefaults.standard.set(index, forKey: "MixorColorIndex")
         }
+        if let bgIndex = BackgroundTheme.themes.firstIndex(where: { $0.name == selectedBackgroundTheme.name }) {
+            UserDefaults.standard.set(bgIndex, forKey: "MixorBackgroundIndex")
+        }
+        UserDefaults.standard.set(hapticFeedbackEnabled, forKey: "MixorHapticFeedback")
+    }
+    
+    func toggleHapticFeedback() {
+        hapticFeedbackEnabled.toggle()
+        saveAppearanceSettings()
     }
 
     func selectColor(_ color: iPodColor) {
         selectedColor = color
+        saveAppearanceSettings()
+    }
+    
+    func selectBackgroundTheme(_ theme: BackgroundTheme) {
+        selectedBackgroundTheme = theme
         saveAppearanceSettings()
     }
 
@@ -988,7 +1014,10 @@ final class iPodState {
             return [
                 MenuItem(title: "How to Use", destination: .howToUse),
                 MenuItem(title: "Repeat", destination: .repeatSetting),
-                MenuItem(title: "Color", destination: .colorPicker),
+                MenuItem(title: "Color Settings", destination: .colorSettings),
+                MenuItem(title: hapticFeedbackEnabled ? "Haptic Feedback ✓" : "Haptic Feedback") { [weak self] in
+                    self?.toggleHapticFeedback()
+                },
                 MenuItem(title: "Support", destination: .support)
             ]
 
@@ -1025,7 +1054,22 @@ final class iPodState {
                 }
             }
 
-        case .colorPicker:
+        case .colorSettings:
+            return [
+                MenuItem(title: "Screen Background", destination: .backgroundPicker),
+                MenuItem(title: "Shell Color", destination: .shellColorPicker)
+            ]
+
+        case .backgroundPicker:
+            return BackgroundTheme.themes.map { theme in
+                let isSelected = selectedBackgroundTheme.name == theme.name
+                return MenuItem(title: isSelected ? "\(theme.name) ✓" : theme.name) { [weak self] in
+                    self?.selectBackgroundTheme(theme)
+                    self?.goBack()
+                }
+            }
+
+        case .shellColorPicker:
             return iPodColor.presets.map { color in
                 let isSelected = selectedColor.name == color.name
                 return MenuItem(title: isSelected ? "\(color.name) ✓" : color.name) { [weak self] in

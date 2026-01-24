@@ -24,15 +24,14 @@
 		A10000010000000000000021 /* Music2001Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000023 /* Music2001Theme.swift */; };
 		A10000010000000000000026 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000026 /* PlayerView.swift */; };
 		A10000010000000000000027 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000027 /* PlayerViewModel.swift */; };
-		AA2AE1B32F0CAC73002630C7 /* ClickWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2AE1AB2F0CAC73002630C7 /* ClickWheelView.swift */; };
 		AA2AE1B42F0CAC73002630C7 /* iPodTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2AE1A92F0CAC73002630C7 /* iPodTypes.swift */; };
 		AA2AE1B52F0CAC73002630C7 /* iPodState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2AE1AF2F0CAC73002630C7 /* iPodState.swift */; };
 		AA2AE1B62F0CAC73002630C7 /* Music2001iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2AE1B12F0CAC73002630C7 /* Music2001iOSApp.swift */; };
-		AA2AE1B72F0CAC73002630C7 /* iPodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2AE1AC2F0CAC73002630C7 /* iPodView.swift */; };
 		AA2AE1B82F0CAC73002630C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA2AE1AE2F0CAC73002630C7 /* Assets.xcassets */; };
 		AA2AE1C02F0CAC73002630C7 /* TipManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2AE1BF2F0CAC73002630C7 /* TipManager.swift */; };
 		AA3A4F442F1853B000854E3A /* DemoMusic in Resources */ = {isa = PBXBuildFile; fileRef = AA3A4F432F1853B000854E3A /* DemoMusic */; };
 		AA3A4F452F18562600854E3A /* DemoMusic in Resources */ = {isa = PBXBuildFile; fileRef = AA3A4F432F1853B000854E3A /* DemoMusic */; };
+		AAA6463D2F22E343002B7855 /* ZunePlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA6463C2F22E343002B7855 /* ZunePlayerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,14 +57,13 @@
 		A10000030000000000000001 /* Music2001App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Music2001App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2AE1722F0C2F0D002630C7 /* Music2001iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Music2001iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2AE1A92F0CAC73002630C7 /* iPodTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPodTypes.swift; sourceTree = "<group>"; };
-		AA2AE1AB2F0CAC73002630C7 /* ClickWheelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickWheelView.swift; sourceTree = "<group>"; };
-		AA2AE1AC2F0CAC73002630C7 /* iPodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPodView.swift; sourceTree = "<group>"; };
 		AA2AE1AE2F0CAC73002630C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA2AE1AF2F0CAC73002630C7 /* iPodState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPodState.swift; sourceTree = "<group>"; };
 		AA2AE1B02F0CAC73002630C7 /* Music2001iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Music2001iOS.entitlements; sourceTree = "<group>"; };
 		AA2AE1B12F0CAC73002630C7 /* Music2001iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music2001iOSApp.swift; sourceTree = "<group>"; };
 		AA2AE1BF2F0CAC73002630C7 /* TipManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipManager.swift; sourceTree = "<group>"; };
 		AA3A4F432F1853B000854E3A /* DemoMusic */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DemoMusic; sourceTree = "<group>"; };
+		AAA6463C2F22E343002B7855 /* ZunePlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZunePlayerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,8 +204,7 @@
 		AA2AE1AD2F0CAC73002630C7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AA2AE1AB2F0CAC73002630C7 /* ClickWheelView.swift */,
-				AA2AE1AC2F0CAC73002630C7 /* iPodView.swift */,
+				AAA6463C2F22E343002B7855 /* ZunePlayerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -351,12 +348,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA2AE1B32F0CAC73002630C7 /* ClickWheelView.swift in Sources */,
 				AA2AE1B42F0CAC73002630C7 /* iPodTypes.swift in Sources */,
+				AAA6463D2F22E343002B7855 /* ZunePlayerView.swift in Sources */,
 				AA2AE1B52F0CAC73002630C7 /* iPodState.swift in Sources */,
 				AA2AE1C02F0CAC73002630C7 /* TipManager.swift in Sources */,
 				AA2AE1B62F0CAC73002630C7 /* Music2001iOSApp.swift in Sources */,
-				AA2AE1B72F0CAC73002630C7 /* iPodView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,7 +493,7 @@
 				CODE_SIGN_ENTITLEMENTS = Music2001/Music2001.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = TUG3BHLSM4;
 				ENABLE_APP_SANDBOX = YES;
@@ -541,7 +537,7 @@
 				CODE_SIGN_ENTITLEMENTS = Music2001/Music2001.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = TUG3BHLSM4;
 				ENABLE_APP_SANDBOX = YES;
@@ -583,7 +579,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Music2001iOS/Music2001iOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -625,7 +621,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Music2001iOS/Music2001iOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
